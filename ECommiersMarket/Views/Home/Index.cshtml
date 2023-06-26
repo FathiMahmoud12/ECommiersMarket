@@ -2,31 +2,110 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .drop-zone {
+        width: 400px;
+        height: 300px;
+        border: 2px dashed #ccc;
+        text-align: center;
+        padding: 20px;
+        background-color: #f7f7f7;
+    }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    .drop-button {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 4px;
+        background-color: #4285f4;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .drop-button:hover {
+            background-color: #3367d6;
+        }
+
+    .button-text {
+        font-size: 16px;
+    }
+
+    .image-preview {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .image-preview img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 5px;
+            border-radius: 4px;
+        }
+</style>
+<div id="drop-zone" class="drop-zone">
+    <p class="drop-message">Drop images here</p>
+    <input type="file" id="file-input" multiple >
+    <div id="image-preview" class="image-preview"></div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+
+@section scripts
+
+{
+    <script>
+
+        const dropZone = document.getElementById('drop-zone');
+        const imagePreview = document.getElementById('image-preview');
+        const fileInput = document.getElementById('file-input');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drag-over');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = e.target.files;
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            const imageFiles = filterImageFiles(files);
+
+            for (let i = 0; i < imageFiles.length; i++) {
+                const file = imageFiles[i];
+                const reader = new FileReader();
+
+                reader.onload = function () {
+                    const imageUrl = reader.result;
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageUrl;
+                    imagePreview.appendChild(imgElement);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function filterImageFiles(files) {
+            return Array.from(files).filter(file => file.type.startsWith('image/'));
+        }
+
+
+    </script>
+}

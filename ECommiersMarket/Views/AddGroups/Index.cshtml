@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "تسجيل فئة جديدة ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p style="direction:ltr ">
+    <a color:black; class="btn btn-outline-success" href="~/Groups/Index">الرجوع للقائمة   </a>
+</p>
+
+@using (Html.BeginForm("ADD_gROUPS", "AddGroups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    <div class="form-control ">
+        <div class="col-12">
+            <label for="GroupName" class="form-label">إسم الفئه  :  </label>
+            <input type="text" class="form-control" id="GroupName" name="GroupName" placeholder="المجموعة " required>
+            <div class="invalid-feedback">
+            </div>
+            <br>
+            <label for="pi_path" class="form-label">  صورة الفئه  </label>
+            <input type="file" class="form-control" id="pi_path" name="pi_path" placeholder="صورة " required>
+            <div class="invalid-feedback">
+
+            </div>
+            <br>
+            <div class="mb-3">
+                <button class="btn btn-primary w-100 waves-effect waves-light" type="submit"> حفظ  </button>
+            </div>
+        </div>
+    </div>
+}
+

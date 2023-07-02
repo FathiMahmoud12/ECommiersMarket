@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "LoadingPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>LoadingPage</h2>
+
+
+@using (Html.BeginForm("Index", "AddCustomar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-control ">
+        <div class="col-12">
+            <label for="name" class="form-label">إسم الموظف  :  </label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="إسم الموظف  " required>
+        </div>
+        <div class="col-12">
+
+            <label for="Phone" class="form-label">رقم  الموظف  :  </label>
+            <input type="text" class="form-control" id="Phone" name="Phone" placeholder="رقم  العميل " required>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+                <label for="CotigorsName" class="form-label">  إسم المستخدم  :  </label>
+                <input type="text" class="form-control" id="UserName" name="UserName" placeholder="رقم  العميل " required>
+            </div>
+            <div class="col-md-6">
+
+                <label for="CotigorsName" class="form-label">
+                    Elmorshidy
+                </label>
+                @*  <input type="text" class="form-control" id="UserName" name="UserName" value="@ViewBag.Elmorshidy" placeholder=" " required>*@
+            </div>
+        </div>
+
+        <div class="col-12">
+
+            <label for="Address" class="form-label">كلمة المرور  :  </label>
+            <input type="text" class="form-control" id="Password" name="Password" placeholder="العنوان " required>
+        </div>
+        <br>
+
+        <br>
+        <div class="mb-3">
+            <button class="btn btn-primary w-100 waves-effect waves-light" type="submit"> حفظ  </button>
+        </div>
+
+    </div>
+}

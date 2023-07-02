@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <p style="direction:ltr ">
-    <a color:black;  class="btn btn-outline-success" href="/Groups/ADD_gROUPS">إضافة فئات جديدة </a></p>
+    <a color:black;  class="btn btn-outline-success" href="~/AddGroups/Index">إضافة فئات جديدة </a></p>
 <h2>إدارة الفئات </h2>
 
 
@@ -34,7 +34,7 @@
                         @Html.DisplayFor(modelItem => item.GroupName)
                     </td>
                     <td>
-                        <img src="@Html.DisplayFor(modelItem => item.pi_path)" alt="لا يمكن عرض الصورة " />
+                        <img src="@item.pi_path" style="width:50px" alt="لا يمكن عرض الصورة " />
 
                     </td>
 
@@ -42,10 +42,12 @@
 
                     <td class="col-3">
                         <a class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
-                            <i class="fas fa-pencil-alt"></i>
+                            @*<i class="fas fa-pencil-alt"></i>
+                            *@
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </a>
 
-                        <a href="/Cotigors/Delete/@item.Id" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
+                        <a href="/Cotigors/Delete/@item.Id" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
 
                     </td>
                 </tr>

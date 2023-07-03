@@ -7,6 +7,9 @@
       <Diagram DiagramId="fb13e078061e4b9cba7f83cb416dc621" Name="Diagram1">
         <EntityTypeShape EntityType="ZahraMarketModel.LoginInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ZahraMarketModel.MainGroup" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZahraMarketModel.SubGroupsT" Width="1.5" PointX="5" PointY="0.75" />
+        <AssociationConnector Association="ZahraMarketModel.FK_SubGroupsT_MainGroups" />
+        <EntityTypeShape EntityType="ZahraMarketModel.User" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,13 +4,14 @@
     ViewBag.Title = "إدارة الفئات ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<p style="direction:ltr ">
-    <a color:black;  class="btn btn-outline-success" href="~/AddGroups/Index">إضافة فئات جديدة </a></p>
-<h2>إدارة الفئات </h2>
-
 
 
 <div class="card-body">
+    <p style="direction:ltr ">
+        <a color:black; class="btn btn-outline-success" href="~/AddGroups/Index">إضافة فئات جديدة </a>
+    </p>
+    <h2>إدارة الفئات </h2>
+
 
     <table class="table table-bordered table-responsive table-hover " id="datatable" name="datatable">
         <thead>
@@ -41,13 +42,11 @@
 
 
                     <td class="col-3">
-                        <a class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
-                            @*<i class="fas fa-pencil-alt"></i>
-                            *@
+                        <a href="/Groups/Edit/@item.Id" class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </a>
 
-                        <a href="/Cotigors/Delete/@item.Id" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
+                        <a href="/Groups/Delete/@item.Id" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
 
                     </td>
                 </tr>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ECommiersMarket.Models.SubGroupsT>
+
+@{
+    ViewBag.Title = "إدارة  الفئات الفرعية ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card-body">
+    <p style="direction:ltr ">
+        <a color:black; class="btn btn-outline-success" href="~/AddSupGroup/Index">إضافة فئة فرعية جديدة </a>
+    </p>
+    <h2>إدارة الفئات الفرعية </h2>
+
+
+    <table class="table table-bordered table-responsive table-hover " id="datatable" name="datatable">
+        <thead>
+            <tr>
+                <th>م </th>
+                <th>اسم الفئة </th>
+                <th>اسم الفئة الفرعية  </th>
+                <th>العمليات  </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MainGroup.GroupName)
+                    </td>     
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubGroupName)
+                    </td>
+                
+
+
+
+                    <td class="col-3">
+                        <a href="/SubGroups/Edit/@item.Id" class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </a>
+
+                        <a href="/SubGroups/Delete/@item.Id" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
+
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section scripts
+
+{
+
+}

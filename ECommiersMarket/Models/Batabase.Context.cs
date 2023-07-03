@@ -27,5 +27,7 @@ namespace ECommiersMarket.Models
     
         public virtual DbSet<LoginInfo> LoginInfoes { get; set; }
         public virtual DbSet<MainGroup> MainGroups { get; set; }
+        public virtual DbSet<SubGroupsT> SubGroupsTs { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ZahraMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ZahraMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LoginInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -27,12 +27,48 @@
           <Property Name="pi_path" Type="nvarchar(max)" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
+        <EntityType Name="SubGroupsT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="SubGroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeletedd" Type="bit" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="FK_SubGroupsT_MainGroups">
+          <End Role="MainGroups" Type="Self.MainGroups" Multiplicity="0..1" />
+          <End Role="SubGroupsT" Type="Self.SubGroupsT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubGroupsT">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ZahraMarketModelStoreContainer">
           <EntitySet Name="LoginInfo" EntityType="Self.LoginInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainGroups" EntityType="Self.MainGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubGroupsT" EntityType="Self.SubGroupsT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SubGroupsT_MainGroups" Association="Self.FK_SubGroupsT_MainGroups">
+            <End Role="MainGroups" EntitySet="MainGroups" />
+            <End Role="SubGroupsT" EntitySet="SubGroupsT" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ZahraMarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -57,11 +93,50 @@
           <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="pi_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="SubGroupsTs" Relationship="ZahraMarketModel.FK_SubGroupsT_MainGroups" FromRole="MainGroup" ToRole="SubGroupsT" />
         </EntityType>
         <EntityContainer Name="ZahraMarketEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="LoginInfoes" EntityType="Self.LoginInfo" />
           <EntitySet Name="MainGroups" EntityType="Self.MainGroup" />
+          <EntitySet Name="SubGroupsTs" EntityType="ZahraMarketModel.SubGroupsT" />
+          <AssociationSet Name="FK_SubGroupsT_MainGroups" Association="ZahraMarketModel.FK_SubGroupsT_MainGroups">
+            <End Role="MainGroup" EntitySet="MainGroups" />
+            <End Role="SubGroupsT" EntitySet="SubGroupsTs" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="ZahraMarketModel.User" />
         </EntityContainer>
+        <EntityType Name="SubGroupsT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="SubGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeletedd" Type="Boolean" />
+          <NavigationProperty Name="MainGroup" Relationship="ZahraMarketModel.FK_SubGroupsT_MainGroups" FromRole="SubGroupsT" ToRole="MainGroup" />
+        </EntityType>
+        <Association Name="FK_SubGroupsT_MainGroups">
+          <End Type="ZahraMarketModel.MainGroup" Role="MainGroup" Multiplicity="0..1" />
+          <End Type="ZahraMarketModel.SubGroupsT" Role="SubGroupsT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubGroupsT">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -89,6 +164,27 @@
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="pi_path" ColumnName="pi_path" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubGroupsTs">
+            <EntityTypeMapping TypeName="ZahraMarketModel.SubGroupsT">
+              <MappingFragment StoreEntitySet="SubGroupsT">
+                <ScalarProperty Name="IsDeletedd" ColumnName="IsDeletedd" />
+                <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ZahraMarketModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,9 +14,18 @@ namespace ECommiersMarket.Models
     
     public partial class MainGroup
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MainGroup()
+        {
+            this.SubGroupsTs = new HashSet<SubGroupsT>();
+        }
+    
         public int Id { get; set; }
         public string GroupName { get; set; }
         public string pi_path { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubGroupsT> SubGroupsTs { get; set; }
     }
 }

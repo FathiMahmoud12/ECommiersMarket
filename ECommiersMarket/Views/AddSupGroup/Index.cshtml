@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Index", "ADD_SubGroups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-control ">
+        <div class="col-12">
+
+            <div class="form-group mb-3 col-sm-6 col-lg-12">
+                @Html.Label("الفئات ", htmlAttributes: new { @class = "control-label" })
+                <div class="col-12">
+                    @Html.DropDownList("GroupID", new SelectList(ViewBag.data, "ID", "GroupName"), "--اختر--", new { @class = "form-control text-center searchable", required = "required" })
+                    @Html.ValidationMessage("GroupID", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="CotigorsName" class="form-label">إسم المحموعة  :  </label>
+            <input type="text" class="form-control" id="GroupName" name="GroupName" placeholder="المجموعة " required>
+        </div>
+    </div>
+}

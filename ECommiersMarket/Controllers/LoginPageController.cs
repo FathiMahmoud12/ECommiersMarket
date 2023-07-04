@@ -50,7 +50,7 @@ namespace ECommiersMarket.Controllers
                 else
                 {
                     TempData["success"] = "تم حفظ البيانات بنجاح";
-                    return RedirectToAction("Home", "HomeUser");
+                    return RedirectToAction("Index", "WelcomeForm");
                 }
 
             }

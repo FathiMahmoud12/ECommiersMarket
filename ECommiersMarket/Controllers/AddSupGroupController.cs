@@ -33,6 +33,12 @@ namespace ECommiersMarket.Controllers
             TempData["success"] = "تم حفظ البيانات بنجاح";
 
             var Groupps = db.MainGroups.ToList();
+            var Combo_Iteams = db.MainGroups.ToList();
+
+            if (Combo_Iteams != null)
+            {
+                @ViewBag.data = Combo_Iteams;
+            }
             return View("Index", Groupps);
         }
     }

@@ -1,11 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "إضافة فئات  فرعية ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<p style="direction:ltr ">
+    <a color:black; class="btn btn-outline-success" href="~/Groups/Index">الرجوع للقائمة   </a>
+</p>
 
-@using (Html.BeginForm("Index", "ADD_SubGroups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("ADD_SubGroups", "AddSupGroup", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-control ">
         <div class="col-12">
@@ -20,8 +23,12 @@
         </div>
 
         <div class="col-12">
-            <label for="CotigorsName" class="form-label">إسم المحموعة  :  </label>
-            <input type="text" class="form-control" id="GroupName" name="GroupName" placeholder="المجموعة " required>
+            <label for="SubGroupName" class="form-label">إسم المحموعة  :  </label>
+            <input type="text" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="المجموعة " required>
+        </div>
+        <br />
+        <div class="mb-3">
+            <button class="btn btn-outline-success w-100 waves-effect waves-light" type="submit"> حفظ  </button>
         </div>
     </div>
 }

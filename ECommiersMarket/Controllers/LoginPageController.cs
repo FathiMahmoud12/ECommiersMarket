@@ -45,7 +45,7 @@ namespace ECommiersMarket.Controllers
                 else if (user.RoleId == Role.SystemAdmin)
                 {
                     TempData["success"] = "تم حفظ البيانات بنجاح";
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

@@ -1937,6 +1937,7 @@
     <Content Include="Views\Shared\MarketLayout.cshtml" />
     <Content Include="Views\WelcomeForm\Index.cshtml" />
     <Content Include="Views\LoginPage\Index.cshtml" />
+    <Content Include="Views\SubGroups\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

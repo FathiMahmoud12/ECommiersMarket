@@ -27,6 +27,25 @@
           <Property Name="pi_path" Type="nvarchar(max)" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
+        <EntityType Name="ProductPictures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="pi_path" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupGroup" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qnt" Type="int" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="SubGroupsT">
           <Key>
             <PropertyRef Name="Id" />
@@ -35,6 +54,20 @@
           <Property Name="GroupID" Type="int" />
           <Property Name="SubGroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeletedd" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User_Reg_Info">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="userPhone" Type="int" />
+          <Property Name="useremail" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="userpassword" Type="nchar" MaxLength="10" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -46,6 +79,30 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <Association Name="FK_ProductPictures_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="ProductPictures" Type="Self.ProductPictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductPictures">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_SubGroupsT">
+          <End Role="SubGroupsT" Type="Self.SubGroupsT" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubGroupsT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SupGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubGroupsT_MainGroups">
           <End Role="MainGroups" Type="Self.MainGroups" Multiplicity="0..1" />
           <End Role="SubGroupsT" Type="Self.SubGroupsT" Multiplicity="*" />
@@ -61,8 +118,29 @@
         <EntityContainer Name="ZahraMarketModelStoreContainer">
           <EntitySet Name="LoginInfo" EntityType="Self.LoginInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainGroups" EntityType="Self.MainGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPictures" EntityType="Self.ProductPictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubGroupsT" EntityType="Self.SubGroupsT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Reg_Info" EntityType="Self.User_Reg_Info" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [User_Reg_Info].[Id] AS [Id], 
+    [User_Reg_Info].[FirstName] AS [FirstName], 
+    [User_Reg_Info].[userPhone] AS [userPhone], 
+    [User_Reg_Info].[useremail] AS [useremail], 
+    [User_Reg_Info].[username] AS [username], 
+    [User_Reg_Info].[userpassword] AS [userpassword], 
+    [User_Reg_Info].[RoleId] AS [RoleId]
+    FROM [dbo].[User_Reg_Info] AS [User_Reg_Info]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ProductPictures_Products" Association="Self.FK_ProductPictures_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductPictures" EntitySet="ProductPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_SubGroupsT" Association="Self.FK_Products_SubGroupsT">
+            <End Role="SubGroupsT" EntitySet="SubGroupsT" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK_SubGroupsT_MainGroups" Association="Self.FK_SubGroupsT_MainGroups">
             <End Role="MainGroups" EntitySet="MainGroups" />
             <End Role="SubGroupsT" EntitySet="SubGroupsT" />
@@ -72,6 +150,27 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ZahraMarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ZahraMarketEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LoginInfoes" EntityType="ZahraMarketModel.LoginInfo" />
+          <EntitySet Name="MainGroups" EntityType="ZahraMarketModel.MainGroup" />
+          <EntitySet Name="SubGroupsTs" EntityType="ZahraMarketModel.SubGroupsT" />
+          <EntitySet Name="Users" EntityType="ZahraMarketModel.User" />
+          <EntitySet Name="User_Reg_Info" EntityType="ZahraMarketModel.User_Reg_Info" />
+          <AssociationSet Name="FK_SubGroupsT_MainGroups" Association="ZahraMarketModel.FK_SubGroupsT_MainGroups">
+            <End Role="MainGroup" EntitySet="MainGroups" />
+            <End Role="SubGroupsT" EntitySet="SubGroupsTs" />
+          </AssociationSet>
+          <EntitySet Name="ProductPictures" EntityType="ZahraMarketModel.ProductPicture" />
+          <EntitySet Name="Products" EntityType="ZahraMarketModel.Product" />
+          <AssociationSet Name="FK_ProductPictures_Products" Association="ZahraMarketModel.FK_ProductPictures_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductPicture" EntitySet="ProductPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_SubGroupsT" Association="ZahraMarketModel.FK_Products_SubGroupsT">
+            <End Role="SubGroupsT" EntitySet="SubGroupsTs" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="LoginInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -95,16 +194,6 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="SubGroupsTs" Relationship="ZahraMarketModel.FK_SubGroupsT_MainGroups" FromRole="MainGroup" ToRole="SubGroupsT" />
         </EntityType>
-        <EntityContainer Name="ZahraMarketEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="LoginInfoes" EntityType="Self.LoginInfo" />
-          <EntitySet Name="MainGroups" EntityType="Self.MainGroup" />
-          <EntitySet Name="SubGroupsTs" EntityType="ZahraMarketModel.SubGroupsT" />
-          <AssociationSet Name="FK_SubGroupsT_MainGroups" Association="ZahraMarketModel.FK_SubGroupsT_MainGroups">
-            <End Role="MainGroup" EntitySet="MainGroups" />
-            <End Role="SubGroupsT" EntitySet="SubGroupsTs" />
-          </AssociationSet>
-          <EntitySet Name="Users" EntityType="ZahraMarketModel.User" />
-        </EntityContainer>
         <EntityType Name="SubGroupsT">
           <Key>
             <PropertyRef Name="Id" />
@@ -114,6 +203,29 @@
           <Property Name="SubGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeletedd" Type="Boolean" />
           <NavigationProperty Name="MainGroup" Relationship="ZahraMarketModel.FK_SubGroupsT_MainGroups" FromRole="SubGroupsT" ToRole="MainGroup" />
+          <NavigationProperty Name="Products" Relationship="ZahraMarketModel.FK_Products_SubGroupsT" FromRole="SubGroupsT" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="User_Reg_Info">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="Id" Type="Guid" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userPhone" Type="Int32" />
+          <Property Name="useremail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userpassword" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_SubGroupsT_MainGroups">
           <End Type="ZahraMarketModel.MainGroup" Role="MainGroup" Multiplicity="0..1" />
@@ -127,17 +239,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="User">
+        <EntityType Name="ProductPicture">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="RoleId" Type="Int32" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="pi_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="ZahraMarketModel.FK_ProductPictures_Products" FromRole="ProductPicture" ToRole="Product" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qnt" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductPictures" Relationship="ZahraMarketModel.FK_ProductPictures_Products" FromRole="Product" ToRole="ProductPicture" />
+          <Property Name="SupGroup" Type="Int32" />
+          <NavigationProperty Name="SubGroupsT" Relationship="ZahraMarketModel.FK_Products_SubGroupsT" FromRole="Product" ToRole="SubGroupsT" />
+        </EntityType>
+        <Association Name="FK_ProductPictures_Products">
+          <End Type="ZahraMarketModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="ZahraMarketModel.ProductPicture" Role="ProductPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductPicture">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_SubGroupsT">
+          <End Type="ZahraMarketModel.SubGroupsT" Role="SubGroupsT" Multiplicity="0..1" />
+          <End Type="ZahraMarketModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubGroupsT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SupGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -146,24 +294,24 @@
           <EntitySetMapping Name="LoginInfoes">
             <EntityTypeMapping TypeName="ZahraMarketModel.LoginInfo">
               <MappingFragment StoreEntitySet="LoginInfo">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
-                <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
-                <ScalarProperty Name="IsBloacked" ColumnName="IsBloacked" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsBloacked" ColumnName="IsBloacked" />
+                <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MainGroups">
             <EntityTypeMapping TypeName="ZahraMarketModel.MainGroup">
               <MappingFragment StoreEntitySet="MainGroups">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="pi_path" ColumnName="pi_path" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="pi_path" ColumnName="pi_path" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -185,6 +333,40 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Reg_Info">
+            <EntityTypeMapping TypeName="ZahraMarketModel.User_Reg_Info">
+              <MappingFragment StoreEntitySet="User_Reg_Info">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPictures">
+            <EntityTypeMapping TypeName="ZahraMarketModel.ProductPicture">
+              <MappingFragment StoreEntitySet="ProductPictures">
+                <ScalarProperty Name="pi_path" ColumnName="pi_path" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ZahraMarketModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="SupGroup" ColumnName="SupGroup" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qnt" ColumnName="Qnt" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -9,56 +9,24 @@
 <html lang="en" style="direction :rtl">
 
 <head>
+
     <meta charset="utf-8" />
-    <title>تسجيل الدخول  | EL-Morshidy  </title>
+    <title>تسجيل مستخدم جديد  | Minia - Minimal Admin & Dashboard Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="/assets/images/favicon.ico">
-    <link href="~/assets/libs/choices.js/public/assets/styles/choices.min.css" rel="stylesheet" type="text/css">
-
-    @*<link rel="stylesheet" href="~/assets/trumbowygEditor/ui/trumbowyg.min.css">
-        <link rel="stylesheet" href="~/assets/trumbowygEditor/plugins/mathml/ui/trumbowyg.mathml.min.css">
-        <link rel="stylesheet" href="~/assets/trumbowygEditor/plugins/specialchars/ui/trumbowyg.specialchars.min.css">*@
-
-    <style>
-        @@font-face {
-            font-family: 'thesansbold';
-            src: url('../../../../assets/fonts/thesans bold.otf') format('opentype');
-        }
-
-        html, body {
-            font-family: thesansbold !important
-        }
-
-        [dir=rtl] input {
-            text-align: start !important;
-        }
-
-        #sidebar-menu ul li ul.sub-menu li a {
-            font-size: 0.78rem !important;
-        }
-
-        #sidebar-menu ul li a i {
-            font-size: 1rem !important;
-            min-width: 1rem !important;
-        }
-    </style>
-    <link href="~/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
-
-    <link href="~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
 
     <!-- preloader css -->
-    <link rel="stylesheet" href="~/assets/css/@(lang == "en" ? "preloader.min.css" : "preloader-rtl.min.css")" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/preloader.min.css" type="text/css" />
 
     <!-- Bootstrap Css -->
-    <link href="~/assets/css/@(lang == "en" ? "bootstrap.min.css" : "bootstrap-rtl.min.css")" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="~/assets/css/@(lang == "en" ? "app.min.css" : "app-rtl.min.css")" id="app-style" rel="stylesheet" type="text/css" />
-
+    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -77,54 +45,62 @@
                                         <img src="/assets/images/logo-sm.svg" alt="" height="28"> <span class="logo-txt">Minia</span>
                                     </a>
                                 </div>
-                                @using (Html.BeginForm("LoginpageComfirm", "Loginpage", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
-                                    <div class="auth-content my-auto">
-                                        <div class="text-center">
-                                            <h5 class="mb-0">مرحبا بعودتك !</h5>
-                                            <p class="text-muted mt-2">قم بالتسجيل للتمكن من استخدام متجرنا </p>
-                                        </div>
-                                        <form class="mt-4 pt-2" action="index.html">
+                                <div class="auth-content my-auto">
+                                    <div class="text-center">
+                                        <h5 class="mb-0">تسجيل حساب </h5>
+                                        <p class="text-muted mt-2">احصل ع حساب مجاني </p>
+                                    </div>
+                                    @using (Html.BeginForm("SaveInfo", "register", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <form class="needs-validation mt-4 pt-2" novalidate action="index.html">
                                             <div class="mb-3">
-                                                <label class="form-label">إسم المستخدم</label>
-                                                <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Enter username">
+                                                <label for="FirstName" class="form-label">الاسم</label>
+                                                <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="Enter email" required>
+                                                <div class="invalid-feedback">
+                                                    Please Enter Email
+                                                </div>
                                             </div>
                                             <div class="mb-3">
-                                                <div class="d-flex align-items-start">
-                                                    <div class="flex-grow-1">
-                                                        <label class="form-label">كلمة المرور </label>
-                                                    </div>
-                                                    <div class="flex-shrink-0">
-                                                        <div class="">
-                                                            <a href="auth-recoverpw.html" class="text-muted">هل نسيت كبمة المرور ؟</a>
-                                                        </div>
-                                                    </div>
+                                                <label for="userPhone" class="form-label">رقم الهاتف </label>
+                                                <input type="number" class="form-control" id="userPhone" name="userPhone" placeholder="Enter email" required>
+                                                <div class="invalid-feedback">
+                                                    Please Enter Email
                                                 </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="useremail" class="form-label">البريد الالكتروني </label>
+                                                <input type="email" class="form-control" id="useremail" name="useremail" placeholder="Enter email" required>
+                                                <div class="invalid-feedback">
+                                                    Please Enter Email
+                                                </div>
+                                            </div>
 
-                                                <div class="input-group auth-pass-inputgroup">
-                                                    <input type="password" class="form-control" placeholder="Enter password" aria-label="Password" id="Password" name="Password" aria-describedby="password-addon">
-                                                    <button class="btn btn-light shadow-none ms-0" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">إسم المستخدم </label>
+                                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                                                <div class="invalid-feedback">
+                                                    Please Enter Username
                                                 </div>
                                             </div>
-                                            <div class="row mb-4">
-                                                <div class="col">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="remember-check">
-                                                        <label class="form-check-label" for="remember-check">
-                                                            Remember me
-                                                        </label>
-                                                    </div>
-                                                </div>
 
+                                            <div class="mb-3">
+                                                <label for="userpassword" class="form-label">كلمة المرور </label>
+                                                <input type="password" class="form-control" id="userpassword" name="userpassword" placeholder="Enter password" required>
+                                                <div class="invalid-feedback">
+                                                    Please Enter Password
+                                                </div>
+                                            </div>
+                                            <div class="mb-4">
+                                                <p class="mb-0">By registering you agree to the Minia <a href="#" class="text-primary">Terms of Use</a></p>
                                             </div>
                                             <div class="mb-3">
-                                                <button class="btn btn-light w-100 waves-effect waves-light" type="submit">تسجيل الدخول </button>
+                                                <button class="btn btn-light w-100 waves-effect waves-light" type="submit">حفظ البيانات  </button>
                                             </div>
                                         </form>
 
                                         <div class="mt-4 pt-2 text-center">
                                             <div class="signin-other-title">
-                                                <h5 class="font-size-14 mb-3 text-muted fw-medium">- تسجيل بواسطة  -</h5>
+                                                <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign up using -</h5>
                                             </div>
 
                                             <ul class="list-inline mb-0">
@@ -148,16 +124,15 @@
                                                 </li>
                                             </ul>
                                         </div>
-
                                         <div class="mt-5 text-center">
                                             <p class="text-muted mb-0">
-                                                Don't have an account ? <a href="/register/Index"
-                                                                           class="text-primary fw-semibold"> تسجيل مستخدم جديد </a>
+                                                تمتلك حساب بالفعل  <a href="/LoginPage/Index"
+                                                                      class="text-primary fw-semibold"> تسجيل الدخول  </a>
                                             </p>
                                         </div>
-                                    </div>
+                                    }
 
-                                }
+                                </div>
                                 <div class="mt-4 mt-md-5 text-center">
                                     <p class="mb-0">
                                         ©
@@ -295,52 +270,19 @@
         <!-- end container fluid -->
     </div>
 
+
     <!-- JAVASCRIPT -->
-    <script src="~/assets/libs/jquery/jquery.min.js"></script>
-    <script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="~/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="~/assets/libs/node-waves/waves.min.js"></script>
-    <script src="~/assets/libs/feather-icons/feather.min.js"></script>
+    <script src="/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    <script src="/assets/libs/feather-icons/feather.min.js"></script>
     <!-- pace js -->
-    <script src="~/assets/libs/pace-js/pace.min.js"></script>
-    <script src="~/assets/libs/sweetalert2/sweetalert2.min.js"></script>
-    <script src="~/assets/js/app.js"></script>
+    <script src="/assets/libs/pace-js/pace.min.js"></script>
 
-    <script src="~/assets/Custome/popupfunctions.js"></script>
-    <script src="~/assets/js/pages/fontawesome.init.js"></script>
+    <!-- validation init -->
+    <script src="/assets/js/pages/validation.init.js"></script>
 
-
-    @if (TempData["warning"] != null)
-    {
-        <script>
-
-        invokeAlert('@TempData["warning"]', '', 'warning', 2000);
-        </script>
-        TempData["warning"] = null;
-    }
-    @if (TempData["success"] != null)
-    {
-        <script>
-
-            invokeAlert('@TempData["success"]','', 'success', 2000);
-        </script>
-        TempData["success"] = null;
-    }
-    @if (TempData["danger"] != null)
-    {
-        <script>
-        invokeAlert('@TempData["danger"]', '', 'danger', 2000);
-        </script>
-        TempData["danger"] = null;
-    }
-    @if (TempData["info"] != null)
-    {
-        <script>
-        invokeAlert('@TempData["info"]', '', 'info', 2000);
-        </script>
-        TempData["info"] = null;
-    }
 </body>
-
 </html>

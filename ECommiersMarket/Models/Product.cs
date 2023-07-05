@@ -12,21 +12,23 @@ namespace ECommiersMarket.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SubGroupsT
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SubGroupsT()
+        public Product()
         {
-            this.Products = new HashSet<Product>();
+            this.ProductPictures = new HashSet<ProductPicture>();
         }
     
-        public int Id { get; set; }
-        public Nullable<int> GroupID { get; set; }
-        public string SubGroupName { get; set; }
-        public Nullable<bool> IsDeletedd { get; set; }
+        public int ID { get; set; }
+        public string ProductName { get; set; }
+        public Nullable<int> Qnt { get; set; }
+        public Nullable<double> Price { get; set; }
+        public string Notes { get; set; }
+        public Nullable<int> SupGroup { get; set; }
     
-        public virtual MainGroup MainGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProductPicture> ProductPictures { get; set; }
+        public virtual SubGroupsT SubGroupsT { get; set; }
     }
 }

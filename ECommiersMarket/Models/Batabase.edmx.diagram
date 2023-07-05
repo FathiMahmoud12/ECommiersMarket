@@ -5,11 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fb13e078061e4b9cba7f83cb416dc621" Name="Diagram1">
-        <EntityTypeShape EntityType="ZahraMarketModel.LoginInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZahraMarketModel.MainGroup" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZahraMarketModel.SubGroupsT" Width="1.5" PointX="5" PointY="0.75" />
+        <EntityTypeShape EntityType="ZahraMarketModel.LoginInfo" Width="1.5" PointX="2.75" PointY="3.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="ZahraMarketModel.MainGroup" Width="1.5" PointX="1.5" PointY="0.5" />
+        <EntityTypeShape EntityType="ZahraMarketModel.SubGroupsT" Width="1.5" PointX="3.125" PointY="0.5" />
+        <EntityTypeShape EntityType="ZahraMarketModel.User" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ZahraMarketModel.User_Reg_Info" Width="1.5" PointX="2.75" PointY="4.25" IsExpanded="false" />
         <AssociationConnector Association="ZahraMarketModel.FK_SubGroupsT_MainGroups" />
-        <EntityTypeShape EntityType="ZahraMarketModel.User" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ZahraMarketModel.ProductPicture" Width="1.5" PointX="6.75" PointY="0.5" />
+        <EntityTypeShape EntityType="ZahraMarketModel.Product" Width="1.5" PointX="4.875" PointY="0.5" />
+        <AssociationConnector Association="ZahraMarketModel.FK_ProductPictures_Products" />
+        <AssociationConnector Association="ZahraMarketModel.FK_Products_SubGroupsT" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

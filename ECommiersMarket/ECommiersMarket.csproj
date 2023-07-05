@@ -132,6 +132,8 @@
     <Compile Include="Controllers\AddSupGroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginPageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\registerController.cs" />
     <Compile Include="Controllers\SubGroupsController.cs" />
     <Compile Include="Controllers\WelcomeFormController.cs" />
     <Compile Include="Enums\Messages.cs" />
@@ -161,10 +163,19 @@
     <Compile Include="Models\MainGroup.cs">
       <DependentUpon>Batabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>Batabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductPicture.cs">
+      <DependentUpon>Batabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SubGroupsT.cs">
       <DependentUpon>Batabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>Batabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User_Reg_Info.cs">
       <DependentUpon>Batabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1938,6 +1949,8 @@
     <Content Include="Views\WelcomeForm\Index.cshtml" />
     <Content Include="Views\LoginPage\Index.cshtml" />
     <Content Include="Views\SubGroups\Edit.cshtml" />
+    <Content Include="Views\register\Index.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

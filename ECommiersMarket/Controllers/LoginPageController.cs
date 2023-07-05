@@ -41,7 +41,6 @@ namespace ECommiersMarket.Controllers
                 string returnUrl = Request.QueryString["returnUrl"];
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                     return Redirect(returnUrl);
-
                 else if (user.RoleId == Role.SystemAdmin)
                 {
                     TempData["success"] = "تم حفظ البيانات بنجاح";
@@ -56,7 +55,9 @@ namespace ECommiersMarket.Controllers
             }
             else
             {
-                return RedirectToAction("Loginpage", "Login");
+                TempData["success"] = "الرجاء مراجعة بيانات الدخول ";
+
+                return RedirectToAction("Index", "Loginpage");
 
             }
         }

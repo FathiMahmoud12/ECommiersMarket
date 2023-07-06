@@ -129,6 +129,7 @@
     <Compile Include="Authorization\Authorized.cs" />
     <Compile Include="Authorization\VTSAuth.cs" />
     <Compile Include="Controllers\AddGroupsController.cs" />
+    <Compile Include="Controllers\AddProductController.cs" />
     <Compile Include="Controllers\AddSupGroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginPageController.cs" />
@@ -1951,6 +1952,7 @@
     <Content Include="Views\SubGroups\Edit.cshtml" />
     <Content Include="Views\register\Index.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\AddProduct\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,13 +22,37 @@
             </div>
         </div>
 
-        <div class="col-12">
-            <label for="SubGroupName" class="form-label">إسم المحموعة  :  </label>
-            <input type="text" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="المجموعة " required>
+        <div class="form-group mb-3 col-sm-6 col-lg-12">
+            @Html.Label("الفئات الفرعية  ", htmlAttributes: new { @class = "control-label" })
+            <div class="col-12">
+                @Html.DropDownList("SupGroup", new SelectList(ViewBag.SupGroup, "ID", "SubGroupName"), "--اختر--", new { @class = "form-control text-center", required = "required" })
+                @Html.ValidationMessage("SupGroup", "", new { @class = "text-danger" })
+            </div>
         </div>
         <br />
         <div class="mb-3">
             <button class="btn btn-outline-success w-100 waves-effect waves-light" type="submit"> حفظ  </button>
         </div>
     </div>
+}
+
+
+@section scripts
+
+{
+
+
+    <script>
+        $("#GroupID").change(function () {
+            $.get('/AddSupGroup/getCats', { Id: $("#SupGroup").val() }, function (data) {
+                $("#SupGroup").empty();
+                $("#SupGroup").append("<option value=''>--اختر--</option>")
+                $.each(data, function (key, value) {
+                    $("#SupGroup").append("<option value=" + value["ID"] + ">" + value["SubGroupName"] + "</option>")
+                });
+            });
+        });
+
+
+    </script>
 }

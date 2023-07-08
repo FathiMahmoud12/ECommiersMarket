@@ -20,7 +20,7 @@ namespace ECommiersMarket.Controllers
             {
                 @ViewBag.data = Combo_Iteams;
             }
-            return View();
+            return View(db.ProductPictures.ToList());
         }  
         public ActionResult AddProdPic( ProductPicture pp )
         {
@@ -68,5 +68,14 @@ namespace ECommiersMarket.Controllers
             }
             return RedirectToAction("Index", "AppProductPicture");
         }
+        public ActionResult Delete(int Id)
+        {
+            var Groupps = db.ProductPictures.Find(Id);
+            db.ProductPictures.Remove(Groupps);
+            TempData["success"] = "تم حذف البيانات بنجاح";
+            
+            return RedirectToAction("Index", db.ProductPictures.ToList());
+        }
+
     }
 }

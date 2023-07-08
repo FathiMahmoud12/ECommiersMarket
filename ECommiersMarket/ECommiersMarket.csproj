@@ -140,6 +140,8 @@
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\SubGroupsController.cs" />
     <Compile Include="Controllers\WelcomeFormController.cs" />
+    <Compile Include="DTO\ProductShowingDTO.cs" />
+    <Compile Include="DTO\SupGroupsDTO.cs" />
     <Compile Include="Enums\Messages.cs" />
     <Compile Include="Enums\Role.cs" />
     <Compile Include="Global.asax.cs">

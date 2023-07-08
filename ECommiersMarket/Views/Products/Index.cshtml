@@ -26,6 +26,7 @@
                 <tr>
                     <th>م </th>
                     <th>اسم الفئة </th>
+                    <th>اسم الصنف  </th>
                     <th>السعر </th>
                     <th>الكمية  </th>
                     <th>الملاحظات  </th>
@@ -43,6 +44,8 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.SubGroupsT.SubGroupName)
+                        </td> <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Price)

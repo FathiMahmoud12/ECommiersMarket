@@ -1,6 +1,7 @@
 ﻿using ECommiersMarket.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,9 +26,30 @@ namespace ECommiersMarket.Controllers
         }
         [HttpPost]
 
-        public ActionResult SaveData(Product p)
+        public ActionResult SaveData(Product p , ProductPicture pp )
         {
             db.Products.Add(p);
+            db.SaveChanges();
+            var ff = db.ProductPictures.OrderByDescending(x => x.Id).FirstOrDefault();
+
+            HttpPostedFileBase ProPicture = Request.Files["pi_path"];
+            if (ff == null)
+            {
+                pp.pi_path = "/Uploads/ServicesAtt/" + "1";
+            }
+            else
+            {
+                pp.pi_path = "/Uploads/ServicesAtt/" + (ff.Id);
+
+            }
+            if (!Directory.Exists(Server.MapPath(pp.pi_path)))
+                Directory.CreateDirectory(Server.MapPath(pp.pi_path));
+            ProductPicture ppp = new ProductPicture()
+            {
+                ProductId = p.ID,
+                pi_path = pp.pi_path
+            };
+            db.ProductPictures.Add(ppp);
             db.SaveChanges();
             var Combo_Iteams = db.MainGroups.ToList();
 
@@ -39,13 +61,13 @@ namespace ECommiersMarket.Controllers
 
             TempData["success"] = "تم حفظ البيانات بنجاح";
 
-            return View();
+            return RedirectToAction("Index", "AddProduct");
 
         }
 
-        public ActionResult getCats(int Id)
+        public ActionResult getCats(int GroupID)
         {
-            var model = db.SubGroupsTs.Where(x => x.GroupID == Id).Select(x => new { x.Id, x.SubGroupName }).ToList();
+            var model = db.SubGroupsTs.Where(x => x.GroupID == GroupID) .Select(x => new { x.Id, x.SubGroupName }).ToList();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

@@ -36,7 +36,7 @@ namespace ECommiersMarket.Controllers
 
             db.SaveChanges();
             db.Products.ToList();
-            return View("Index");
+            return View("Index", db.Products.ToList());
         }
         public ActionResult Delete(int Id)
         {

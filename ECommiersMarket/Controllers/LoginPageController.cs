@@ -35,9 +35,12 @@ namespace ECommiersMarket.Controllers
                     RoleId = (Role)FindUsername.RoleId,
                     UserName = FindUsername.UserName,
                 };
-
+               
                 auth.SaveToCookies(user);
-
+                if (user.UserName != null)
+                {
+                    ViewBag.ISLogin = "true";
+                }
                 string returnUrl = Request.QueryString["returnUrl"];
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                     return Redirect(returnUrl);

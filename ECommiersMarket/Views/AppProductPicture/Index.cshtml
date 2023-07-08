@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "إضافة صور لصنف محدد";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p style="direction:ltr ">
+    <a color:black; class="btn btn-outline-success" href="~/SubGroups/Index">الرجوع للقائمة   </a>
+</p>
+
+@using (Html.BeginForm("AddProdPic", "AppProductPicture", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    <div class="form-control ">
+        <div class="col-12">
+            <div class="form-group mb-3 col-sm-6 col-lg-12">
+                @Html.Label("المنتجات", htmlAttributes: new { @class = "control-label" })
+                <div class="col-12">
+                    @Html.DropDownList("ProductId", new SelectList(ViewBag.data, "ID", "ProductName"), "--اختر--", new { @class = "form-control text-center searchable", required = "required" })
+                    @Html.ValidationMessage("ProductId", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+            <br>
+            <label for="pi_path" class="form-label">  صورة المنتج  </label>
+            <input type="file" class="form-control" id="pi_path" name="pi_path" placeholder="صورة " required>
+            <div class="invalid-feedback">
+
+            </div>
+            <br>
+            <div class="mb-3">
+                <button class="btn btn-primary w-100 waves-effect waves-light" type="submit"> حفظ  </button>
+            </div>
+        </div>
+}
+

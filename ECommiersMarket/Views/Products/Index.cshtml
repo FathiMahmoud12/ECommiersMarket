@@ -18,7 +18,7 @@
                 <a color:black; class="btn btn-outline-success" href="~/AddGroups/Index"> إضافة صورة لمنتج  </a>
             </p>
         </div>
-        <h2>إدارة الفئات </h2>
+        <h2>إدارة المنتجات  </h2>
 
 
         <table class="table table-bordered table-responsive table-hover " id="datatable" name="datatable">
@@ -57,11 +57,11 @@
 
 
                         <td class="col-3">
-                            <a href="/Groups/Edit/@item.ID" class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
+                            <a href="/Products/Edit/@item.ID" class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i>
                             </a>
 
-                            <a href="/Groups/Delete/@item.ID" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
+                            <a href="/Products/Delete/@item.ID" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
 
                         </td>
                     </tr>

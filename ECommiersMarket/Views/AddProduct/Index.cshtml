@@ -13,12 +13,13 @@
         </p>
 
         <p style="direction:ltr " class="me-2">
-            <a color:black; class="btn btn-outline-success" href="~/AddGroups/Index"> إضافة صورة لمنتج  </a>
+            <a color:black; class="btn btn-outline-success" href="~/AppProductPicture/Index"> إضافة صورة لمنتج  </a>
         </p>
+    </div>
     </div>
     <h2>إدارة الفئات </h2>
 
-    @using (Html.BeginForm("ADD_SubGroups", "AddProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("SaveData", "AddProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="form-control ">
             <div class="col-12">
@@ -36,37 +37,37 @@
                 <div class="form-group mb-3 col-sm-6 col-lg-12">
                     @Html.Label("الفئات الفرعية", htmlAttributes: new { @class = "control-label" })
                     <div class="col-12">
-                        @Html.DropDownList("SupGroup", null, "--اختر--", new { @class = "form-control text-center searchable", required = "required" })
+                        @Html.DropDownList("SupGroup", null, "--اختر--", new { @class = "form-control text-center ", required = "required" })
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-6">
-                    <label for="SubGroupName" class="form-label">إسم الصنف   :  </label>
-                    <input type="text" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="المجموعة " required>
+                    <label for="ProductName" class="form-label">إسم الصنف   :  </label>
+                    <input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="المجموعة " required>
                 </div>
                 <div class="col-6">
-                    <label for="SubGroupName" class="form-label">سعر البيع  :  </label>
-                    <input type="number" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="السعر " required>
+                    <label for="Price" class="form-label">سعر البيع  :  </label>
+                    <input type="number" class="form-control" id="Price" name="Price" placeholder="السعر " required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                    <label for="SubGroupName" class="form-label">الكمية :  </label>
-                    <input type="number" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="الكمية " required>
+                    <label for="Qnt" class="form-label">الكمية :  </label>
+                    <input type="number" class="form-control" id="Qnt" name="Qnt" placeholder="الكمية " required>
                 </div>
                 <div class="col-6">
-                    <label for="SubGroupName" class="form-label">الصورة   :  </label>
-                    <input type="file" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="الصورة " required>
+                    <label for="pi_path" class="form-label">الصورة   :  </label>
+                    <input type="file" class="form-control" id="pi_path" name="pi_path" placeholder="الصورة " required>
                 </div>
             </div>
 
             <br />
             <div class="row">
                 <div class="col-12">
-                    <label for="SubGroupName" class="form-label">الملاحظات  :  </label>
-                    <textarea class="form-control" id="SubGroupName" name="SubGroupName" placeholder="الملاحظات " required>
+                    <label for="Notes" class="form-label">الملاحظات  :  </label>
+                    <textarea class="form-control" id="Notes" name="Notes" placeholder="الملاحظات " required>
 </textarea>
                 </div>
             </div>
@@ -82,11 +83,12 @@
 {
         <script>
             $("#GroupID").change(function () {
-                $.get('/AddProduct/getCats', { Id: $("#GroupID").val() }, function (data) {
+                
+                $.get('/AddProduct/getCats', { GroupID: $("#GroupID").val() }, function (data) {
                     $("#SupGroup").empty();
                     $("#SupGroup").append("<option value=''>--اختر--</option>")
                     $.each(data, function (key, value) {
-                        $("#SupGroup").append("<option value=" + value["ID"] + ">" + value["SubGroupName"] + "</option>")
+                        $("#SupGroup").append("<option value=" + value["Id"] + ">" + value["SubGroupName"] + "</option>")
                     });
                 });
             });

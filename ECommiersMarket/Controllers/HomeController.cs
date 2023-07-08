@@ -1,4 +1,5 @@
 ﻿using ECommiersMarket.Models;
+using FirstSelection.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace ECommiersMarket.Controllers
         public ActionResult Index()
         {
             ViewBag.MAinGroupsCount = db.MainGroups.Count();
+            ViewBag.Prod = db.Products.Count();
 
             return View();
         }
@@ -31,6 +33,13 @@ namespace ECommiersMarket.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult SignOut()
+        {
+            VTSAuth auth = new VTSAuth();
+            auth.LoadDataFromCookies();
+            auth.ClearCookies();
+            return RedirectToAction("Index", "LoginPage");
         }
     }
 }

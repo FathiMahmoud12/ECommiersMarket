@@ -22,7 +22,7 @@ namespace ECommiersMarket.Controllers
             
             return View(Groupps);
         }
-        [HttpPost]
+        [HttpPost] 
         public ActionResult Edit(int Id, Product gg)
         {
 

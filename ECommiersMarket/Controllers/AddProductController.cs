@@ -21,8 +21,28 @@ namespace ECommiersMarket.Controllers
             }
             @ViewBag.SupGroup = new SelectList("");
 
-            return View();
+            return View(db.Products.ToList());
         }
+        [HttpPost]
+
+        public ActionResult SaveData(Product p)
+        {
+            db.Products.Add(p);
+            db.SaveChanges();
+            var Combo_Iteams = db.MainGroups.ToList();
+
+            if (Combo_Iteams != null)
+            {
+                @ViewBag.data = Combo_Iteams;
+            }
+            @ViewBag.SupGroup = new SelectList("");
+
+            TempData["success"] = "تم حفظ البيانات بنجاح";
+
+            return View();
+
+        }
+
         public ActionResult getCats(int Id)
         {
             var model = db.SubGroupsTs.Where(x => x.GroupID == Id).Select(x => new { x.Id, x.SubGroupName }).ToList();

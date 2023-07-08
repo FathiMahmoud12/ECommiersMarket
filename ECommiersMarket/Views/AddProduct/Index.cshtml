@@ -1,69 +1,96 @@
 ﻿@model IEnumerable<ECommiersMarket.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "إضافة المنتجات ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div class="card-body">
     <div class="d-flex align-items-center" style=" direction:ltr">
-        <p style="direction:ltr">
-            <a color:black; class="btn btn-outline-success" href="~/AddGroups/Index"> إضافة  </a>
+        <p style="direction:ltr ">
+            <a color:black; class="btn btn-outline-success" href="~/Products/Index">الرجوع للقائمة   </a>
         </p>
+
         <p style="direction:ltr " class="me-2">
             <a color:black; class="btn btn-outline-success" href="~/AddGroups/Index"> إضافة صورة لمنتج  </a>
         </p>
     </div>
     <h2>إدارة الفئات </h2>
 
+    @using (Html.BeginForm("ADD_SubGroups", "AddProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-control ">
+            <div class="col-12">
 
-    <table class="table table-bordered table-responsive table-hover " id="datatable" name="datatable">
-        <thead>
-            <tr>
-                <th>م </th>
-                <th>اسم الفئة </th>
-                <th>الصورة </th>
-                <th>العمليات  </th>
+                <div class="form-group mb-3 col-sm-6 col-lg-12">
+                    @Html.Label("الفئات ", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-12">
+                        @Html.DropDownList("GroupID", new SelectList(ViewBag.data, "ID", "GroupName"), "--اختر--", new { @class = "form-control text-center searchable", required = "required" })
+                        @Html.ValidationMessage("GroupID", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
+                <div class="form-group mb-3 col-sm-6 col-lg-12">
+                    @Html.Label("الفئات الفرعية", htmlAttributes: new { @class = "control-label" })
+                    <div class="col-12">
+                        @Html.DropDownList("SupGroup", null, "--اختر--", new { @class = "form-control text-center searchable", required = "required" })
+                    </div>
+                </div>
+            </div>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GroupName)
-                    </td>
-                    <td>
-                        <img src="@item.pi_path" style="width:50px" alt="لا يمكن عرض الصورة " />
+            <div class="row">
+                <div class="col-6">
+                    <label for="SubGroupName" class="form-label">إسم الصنف   :  </label>
+                    <input type="text" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="المجموعة " required>
+                </div>
+                <div class="col-6">
+                    <label for="SubGroupName" class="form-label">سعر البيع  :  </label>
+                    <input type="number" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="السعر " required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="SubGroupName" class="form-label">الكمية :  </label>
+                    <input type="number" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="الكمية " required>
+                </div>
+                <div class="col-6">
+                    <label for="SubGroupName" class="form-label">الصورة   :  </label>
+                    <input type="file" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="الصورة " required>
+                </div>
+            </div>
 
-                    </td>
+            <br />
+            <div class="row">
+                <div class="col-12">
+                    <label for="SubGroupName" class="form-label">الملاحظات  :  </label>
+                    <textarea class="form-control" id="SubGroupName" name="SubGroupName" placeholder="الملاحظات " required>
+</textarea>
+                </div>
+            </div>
+            <br />
+            <div class="mb-3">
+                <button class="btn btn-outline-success w-100 waves-effect waves-light" type="submit"> حفظ  </button>
+            </div>
+        </div>
+    }
 
-
-
-                    <td class="col-3">
-                        <a href="/Groups/Edit/@item.Id" class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        </a>
-
-                        <a href="/Groups/Delete/@item.Id" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
-
-                    </td>
-                </tr>
-
-            }
-        </tbody>
-    </table>
-</div>
-
-
-@section scripts
+    @section scripts
 
 {
+        <script>
+            $("#GroupID").change(function () {
+                $.get('/AddProduct/getCats', { Id: $("#GroupID").val() }, function (data) {
+                    $("#SupGroup").empty();
+                    $("#SupGroup").append("<option value=''>--اختر--</option>")
+                    $.each(data, function (key, value) {
+                        $("#SupGroup").append("<option value=" + value["ID"] + ">" + value["SubGroupName"] + "</option>")
+                    });
+                });
+            });
 
-}
+
+        </script>
+    }

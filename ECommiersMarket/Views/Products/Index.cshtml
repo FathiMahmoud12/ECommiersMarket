@@ -6,38 +6,70 @@
 }
 
 
-<div class="card-body">
-    <p style="direction:ltr">
-        <a color:black; class="btn btn-outline-success" href="~/AddProduct/Index"> إضافة منتج </a>
-    </p>
 
-    <h2>إدارة المنتجات </h2>
 
-    <p style="direction:ltr ">
-        <a color:black; class="btn btn-outline-success" href="~/SubGroups/Index">الرجوع للقائمة   </a>
-    </p>
 
-    @using (Html.BeginForm("ADD_SubGroups", "AddProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div class="form-control ">
-            <div class="col-12">
-
-                <div class="form-group mb-3 col-sm-6 col-lg-12">
-                    @Html.Label("الفئات ", htmlAttributes: new { @class = "control-label" })
-                    <div class="col-12">
-                        @Html.DropDownList("GroupID", new SelectList(ViewBag.data, "ID", "GroupName"), "--اختر--", new { @class = "form-control text-center searchable", required = "required" })
-                        @Html.ValidationMessage("GroupID", "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <label for="SubGroupName" class="form-label">إسم المحموعة  :  </label>
-                <input type="text" class="form-control" id="SubGroupName" name="SubGroupName" placeholder="المجموعة " required>
-            </div>
-            <br />
-            <div class="mb-3">
-                <button class="btn btn-outline-success w-100 waves-effect waves-light" type="submit"> حفظ  </button>
-            </div>
+    <div class="card-body">
+        <div class="d-flex align-items-center" style=" direction:ltr">
+            <p style="direction:ltr">
+                <a color:black; class="btn btn-outline-success" href="~/AddProduct/Index"> إضافة  </a>
+            </p>
+            <p style="direction:ltr " class="me-2">
+                <a color:black; class="btn btn-outline-success" href="~/AddGroups/Index"> إضافة صورة لمنتج  </a>
+            </p>
         </div>
-    }
+        <h2>إدارة الفئات </h2>
+
+
+        <table class="table table-bordered table-responsive table-hover " id="datatable" name="datatable">
+            <thead>
+                <tr>
+                    <th>م </th>
+                    <th>اسم الفئة </th>
+                    <th>السعر </th>
+                    <th>الكمية  </th>
+                    <th>الملاحظات  </th>
+                    <th>العمليات  </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubGroupsT.SubGroupName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Qnt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Notes)
+                        </td>
+
+
+
+                        <td class="col-3">
+                            <a href="/Groups/Edit/@item.ID" class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </a>
+
+                            <a href="/Groups/Delete/@item.ID" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
+
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+  

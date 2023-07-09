@@ -26,31 +26,11 @@ namespace ECommiersMarket.Controllers
         }
         [HttpPost]
 
-        public ActionResult SaveData(Product p , ProductPicture pp )
+        public ActionResult SaveData(Product p  )
         {
             db.Products.Add(p);
             db.SaveChanges();
-            var ff = db.ProductPictures.OrderByDescending(x => x.Id).FirstOrDefault();
-
-            HttpPostedFileBase ProPicture = Request.Files["pi_path"];
-            if (ff == null)
-            {
-                pp.pi_path = "/Uploads/ServicesAtt/" + "1";
-            }
-            else
-            {
-                pp.pi_path = "/Uploads/ServicesAtt/" + (ff.Id);
-
-            }
-            if (!Directory.Exists(Server.MapPath(pp.pi_path)))
-                Directory.CreateDirectory(Server.MapPath(pp.pi_path));
-            ProductPicture ppp = new ProductPicture()
-            {
-                ProductId = p.ID,
-                pi_path = pp.pi_path
-            };
-            db.ProductPictures.Add(ppp);
-            db.SaveChanges();
+           
             var Combo_Iteams = db.MainGroups.ToList();
 
             if (Combo_Iteams != null)

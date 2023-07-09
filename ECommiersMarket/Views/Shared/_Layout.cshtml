@@ -184,13 +184,16 @@
                             </a>
 
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="@Url.Action("index", "Groups")"><i class="fa fa-layer-group p-1"></i>تعرف الفئات  </a></li>
+                                <li><a href="/Groups/Index"><i class="fa fa-layer-group p-1"></i>تعرف الفئات  </a></li>
                             </ul>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="@Url.Action("Index","SubGroups")"><i class="fa fa-italic p-1"></i>  الفئات الفرعية       </a></li>
                             </ul>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="@Url.Action("Index","Products")"><i class="fa fa-italic p-1"></i>   تعريف المنتجات       </a></li>
+                            </ul> 
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="@Url.Action("Index","AppProductPicture")"><i class="fa fa-italic p-1"></i>   إضافة صور لمنتج        </a></li>
                             </ul>
 
                         </li>
@@ -207,10 +210,7 @@
                                 <li><a href="@Url.Action("Index","StoreList")"><i class="fas fa-list-alt p-1"></i> قائمة المخازن     </a></li>
 
                             </ul>
-                            @*<ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="@Url.Action("Index","sOsERVICES")"><i class="fas fa-list-alt p-1"></i>  تحويل من مخزن لمخزن     </a></li>
-
-                                </ul>*@
+                           
                         </li>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow">

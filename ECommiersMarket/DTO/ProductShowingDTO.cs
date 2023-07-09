@@ -9,6 +9,7 @@ namespace ECommiersMarket.DTO
     {
         public int Id { get; set; }
         public string ProdName { get; set; }
+        public string Note { get; set; }
         public int Price { get; set; }
         public List<ProductsImagesDto> ProductImages { get; set; }
 

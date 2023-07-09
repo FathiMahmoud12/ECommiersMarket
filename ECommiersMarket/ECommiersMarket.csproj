@@ -138,6 +138,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\registerController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\shop_detailsController.cs" />
     <Compile Include="Controllers\SubGroupsController.cs" />
     <Compile Include="Controllers\WelcomeFormController.cs" />
     <Compile Include="DTO\ProductShowingDTO.cs" />
@@ -1961,6 +1962,7 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\AppProductPicture\Index.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\shop_details\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

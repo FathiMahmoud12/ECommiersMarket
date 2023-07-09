@@ -21,11 +21,11 @@ namespace ECommiersMarket.Models
         }
     
         public int ID { get; set; }
+        public Nullable<int> SupGroup { get; set; }
         public string ProductName { get; set; }
         public Nullable<int> Qnt { get; set; }
         public Nullable<double> Price { get; set; }
         public string Notes { get; set; }
-        public Nullable<int> SupGroup { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPicture> ProductPictures { get; set; }

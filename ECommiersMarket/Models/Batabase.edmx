@@ -56,7 +56,7 @@
           <Property Name="IsDeletedd" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'db_a9bfda_boonbon.dbo.User_Reg_Info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="User_Reg_Info">
           <Key>
             <PropertyRef Name="RoleId" />
@@ -153,6 +153,8 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
         <EntityContainer Name="ZahraMarketEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="LoginInfoes" EntityType="ZahraMarketModel.LoginInfo" />
           <EntitySet Name="MainGroups" EntityType="ZahraMarketModel.MainGroup" />
+          <EntitySet Name="ProductPictures" EntityType="ZahraMarketModel.ProductPicture" />
+          <EntitySet Name="Products" EntityType="ZahraMarketModel.Product" />
           <EntitySet Name="SubGroupsTs" EntityType="ZahraMarketModel.SubGroupsT" />
           <EntitySet Name="Users" EntityType="ZahraMarketModel.User" />
           <EntitySet Name="User_Reg_Info" EntityType="ZahraMarketModel.User_Reg_Info" />
@@ -160,8 +162,6 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
             <End Role="MainGroup" EntitySet="MainGroups" />
             <End Role="SubGroupsT" EntitySet="SubGroupsTs" />
           </AssociationSet>
-          <EntitySet Name="ProductPictures" EntityType="ZahraMarketModel.ProductPicture" />
-          <EntitySet Name="Products" EntityType="ZahraMarketModel.Product" />
           <AssociationSet Name="FK_ProductPictures_Products" Association="ZahraMarketModel.FK_ProductPictures_Products">
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductPicture" EntitySet="ProductPictures" />
@@ -193,6 +193,28 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
           <Property Name="pi_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="SubGroupsTs" Relationship="ZahraMarketModel.FK_SubGroupsT_MainGroups" FromRole="MainGroup" ToRole="SubGroupsT" />
+        </EntityType>
+        <EntityType Name="ProductPicture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="pi_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="ZahraMarketModel.FK_ProductPictures_Products" FromRole="ProductPicture" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupGroup" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qnt" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductPictures" Relationship="ZahraMarketModel.FK_ProductPictures_Products" FromRole="Product" ToRole="ProductPicture" />
+          <NavigationProperty Name="SubGroupsT" Relationship="ZahraMarketModel.FK_Products_SubGroupsT" FromRole="Product" ToRole="SubGroupsT" />
         </EntityType>
         <EntityType Name="SubGroupsT">
           <Key>
@@ -239,28 +261,6 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ProductPicture">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductId" Type="Int32" />
-          <Property Name="pi_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="ZahraMarketModel.FK_ProductPictures_Products" FromRole="ProductPicture" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Qnt" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-          <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProductPictures" Relationship="ZahraMarketModel.FK_ProductPictures_Products" FromRole="Product" ToRole="ProductPicture" />
-          <Property Name="SupGroup" Type="Int32" />
-          <NavigationProperty Name="SubGroupsT" Relationship="ZahraMarketModel.FK_Products_SubGroupsT" FromRole="Product" ToRole="SubGroupsT" />
-        </EntityType>
         <Association Name="FK_ProductPictures_Products">
           <End Type="ZahraMarketModel.Product" Role="Product" Multiplicity="0..1" />
           <End Type="ZahraMarketModel.ProductPicture" Role="ProductPicture" Multiplicity="*" />
@@ -315,6 +315,27 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProductPictures">
+            <EntityTypeMapping TypeName="ZahraMarketModel.ProductPicture">
+              <MappingFragment StoreEntitySet="ProductPictures">
+                <ScalarProperty Name="pi_path" ColumnName="pi_path" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ZahraMarketModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qnt" ColumnName="Qnt" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="SupGroup" ColumnName="SupGroup" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SubGroupsTs">
             <EntityTypeMapping TypeName="ZahraMarketModel.SubGroupsT">
               <MappingFragment StoreEntitySet="SubGroupsT">
@@ -346,27 +367,6 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
                 <ScalarProperty Name="userPhone" ColumnName="userPhone" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductPictures">
-            <EntityTypeMapping TypeName="ZahraMarketModel.ProductPicture">
-              <MappingFragment StoreEntitySet="ProductPictures">
-                <ScalarProperty Name="pi_path" ColumnName="pi_path" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="ZahraMarketModel.Product">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="SupGroup" ColumnName="SupGroup" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Qnt" ColumnName="Qnt" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

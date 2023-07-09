@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fb13e078061e4b9cba7f83cb416dc621" Name="Diagram1">
-        <EntityTypeShape EntityType="ZahraMarketModel.LoginInfo" Width="1.5" PointX="2.75" PointY="3.25" IsExpanded="false" />
-        <EntityTypeShape EntityType="ZahraMarketModel.MainGroup" Width="1.5" PointX="1.5" PointY="0.5" />
-        <EntityTypeShape EntityType="ZahraMarketModel.SubGroupsT" Width="1.5" PointX="3.125" PointY="0.5" />
-        <EntityTypeShape EntityType="ZahraMarketModel.User" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="ZahraMarketModel.User_Reg_Info" Width="1.5" PointX="2.75" PointY="4.25" IsExpanded="false" />
+      <Diagram DiagramId="fb13e078061e4b9cba7f83cb416dc621" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="ZahraMarketModel.LoginInfo" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ZahraMarketModel.MainGroup" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="ZahraMarketModel.ProductPicture" Width="1.5" PointX="7.5" PointY="1.375" />
+        <EntityTypeShape EntityType="ZahraMarketModel.Product" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="ZahraMarketModel.SubGroupsT" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="ZahraMarketModel.User" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ZahraMarketModel.User_Reg_Info" Width="1.5" PointX="4.75" PointY="4.75" />
         <AssociationConnector Association="ZahraMarketModel.FK_SubGroupsT_MainGroups" />
-        <EntityTypeShape EntityType="ZahraMarketModel.ProductPicture" Width="1.5" PointX="6.75" PointY="0.5" />
-        <EntityTypeShape EntityType="ZahraMarketModel.Product" Width="1.5" PointX="4.875" PointY="0.5" />
         <AssociationConnector Association="ZahraMarketModel.FK_ProductPictures_Products" />
         <AssociationConnector Association="ZahraMarketModel.FK_Products_SubGroupsT" />
       </Diagram>

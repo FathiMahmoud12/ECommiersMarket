@@ -43,14 +43,14 @@
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch"><img src="/assetsMarket/img/icon/search.png" alt=""></a>
             <a href="#"><img src="/assetsMarket/img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="/assetsMarket/img/icon/cart.png" alt=""> <span>0</span></a>
+            <a href="/ShopList/Index"><img src="/assetsMarket/img/icon/cart.png" alt=""> <span>0</span></a>
             @if (ViewBag.CartCount == null)
             {
                 <div class="price">$0.00</div>
             }
             else if (ViewBag.CartCount != null)
             {
-        <div class="price"> ج.م@ViewBag.CartCount</div>
+        <div class="price"> ج.م  @ViewBag.CartCount</div>
             }
         </div>
         <div id="mobile-menu-wrap"></div>
@@ -94,7 +94,7 @@
                                 <ul class="dropdown">
                                     <li><a href="./about.html">عنا</a></li>
                                     <li><a href="./shop-details.html">تفاصيل المتجر</a></li>
-                                    <li><a href="./shopping-cart.html">عربة التسوق</a></li>
+                                    <li><a href="~/ShopList/Index">عربة التسوق</a></li>
                                     <li><a href="./checkout.html">الدفع</a></li>
                                     <li><a href="./blog-details.html">تفاصيل المدونة</a></li>
                                 </ul>
@@ -106,14 +106,14 @@
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
                         <a href="#"><img src="/assetsMarket/img/icon/heart.png" alt=""></a>
-                        <a href="#"><img src="/assetsMarket/img/icon/cart.png" alt=""> <span>0</span></a>
+                        <a href="/ShopList/Index"><img src="/assetsMarket/img/icon/cart.png" alt=""> <span>0</span></a>
                         @if (ViewBag.CartCount == null)
                         {
                             <div class="price">$0.00</div>
                         }
                         else if (ViewBag.CartCount != null)
                         {
-                    <div class="price"> ج.م @ViewBag.Sum  </div>
+                            <div class="price"> ج.م @ViewBag.Sum  </div>
                         }
                     </div>
                 </div>

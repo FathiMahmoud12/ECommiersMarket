@@ -41,7 +41,7 @@ namespace ECommiersMarket.Controllers
             ViewBag.Iteams = Pro;
 
 
-            return View("Index",db.MainGroups.ToList());
+            return View("Index", db.MainGroups.ToList());
         }
 
         public ActionResult AddItem(int id)
@@ -114,7 +114,7 @@ namespace ECommiersMarket.Controllers
             {
                 TempData["info"] = "لم يتم تسجيل الدخول ";
 
-                return RedirectToAction("Index", "LoginPage"); 
+                return RedirectToAction("Index", "LoginPage");
             }
         }
 
@@ -195,6 +195,7 @@ namespace ECommiersMarket.Controllers
             }
 
         }
+        
         public class UserProducts
         {
             public int Id { get; set; }

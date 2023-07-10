@@ -20,19 +20,18 @@ namespace Elmorshedi_Candels.Controllers
             {
                 VTSAuth auth = new VTSAuth();
                 
-                    //if (auth.LoadDataFromCookiesCart() != null)
-                    //{
-                        //var i = 0;
-                        //foreach (var item in auth.LoadDataFromCookiesCart())
-                        //{
-                        //    i += (int)item.Count;
-                        //}
-                        //filterContext.Controller.ViewBag.Cart = auth.LoadDataFromCookiesCart().ToList();
-                        //filterContext.Controller.ViewBag.CartCount = i;
-                        //filterContext.Controller.ViewBag.Sum = auth.LoadDataFromCookiesCart().Sum(x=>x.Price);
-                        //filterContext.Controller.ViewBag.Sum = auth.LoadDataFromCookiesCart().Sum(x=>x.Price);
+                    if (auth.LoadDataFromCookiesCart() != null)
+                    {
+                        var i = 0;
+                        foreach (var item in auth.LoadDataFromCookiesCart())
+                        {
+                            i += (int)item.Count;
+                        }
+                        filterContext.Controller.ViewBag.Cart = auth.LoadDataFromCookiesCart().ToList();
+                        filterContext.Controller.ViewBag.CartCount = i;
+                        filterContext.Controller.ViewBag.Sum = auth.LoadDataFromCookiesCart().Sum(x=>x.Price);
 
-                    //}
+                    }
                 filterContext.Controller.ViewBag.SubGroups = db.SubGroupsTs.ToList();
 
 

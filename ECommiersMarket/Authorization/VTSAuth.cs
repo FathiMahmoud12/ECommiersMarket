@@ -1,23 +1,27 @@
 ﻿using FirstSelection.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Web;
+using static ECommiersMarket.Controllers.ShopController;
 
 namespace FirstSelection.Authorization
 {
     public class VTSAuth
     {
-        readonly string cookiename = "SpeedAdmin";
+        readonly string cookiename = "Engineering_Syndicate";
         readonly int cookieKeyCount = 1;
-        readonly int cookieDays = 30;
-
+        readonly int cookieDays = 1;
+        public List<UserProducts> CookieValues3 { get; set; }
         public UserInfo CookieValues { get; set; }
         //private Guid SessionID { get; set; }
 
+        public bool CheckCookiesCart() => HttpContext.Current.Request.Cookies["Cart"] != null && HttpContext.Current.Request.Cookies["Cart"].Values.Count >= cookieKeyCount;
 
         /// <summary>
         /// check if the cookies has values and the values count is equal to or bigger than the cookie keys count
         /// </summary>
         public bool CheckCookies() => HttpContext.Current.Request.Cookies[cookiename] != null && HttpContext.Current.Request.Cookies[cookiename].Values.Count >= cookieKeyCount;
+        public bool MArcetCooke() => HttpContext.Current.Request.Cookies["market"] != null && HttpContext.Current.Request.Cookies["market"].Values.Count >= cookieKeyCount;
         /// <summary>
         /// Load Data saved in the cookies
         /// </summary>
@@ -32,13 +36,52 @@ namespace FirstSelection.Authorization
             }
             return false;
         }
-
-
+        public List<UserProducts> LoadDataFromCookiesCart()
+        {
+            if (CheckCookiesCart())
+            {
+                HttpCookie cookie = HttpContext.Current.Request.Cookies["Cart"];
+                CookieValues3 = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserProducts>>(Security.Decrypt(cookie.Value));
+                return CookieValues3;
+            }
+            return CookieValues3;
+        }
+        public UserInfo LoadDataFromCookiesUser()
+        {
+            if (CheckCookiesCart())
+            {
+                HttpCookie cookie = HttpContext.Current.Request.Cookies["Engineering_Syndicate"];
+                CookieValues = Newtonsoft.Json.JsonConvert.DeserializeObject<UserInfo>(Security.Decrypt(cookie.Value));
+                return CookieValues;
+            }
+            return CookieValues;
+        }
+        internal bool SaveToCookiesCart(List<UserProducts> cookieValues)
+        {
+            if (cookieValues != null)
+            {
+                HttpCookie cookie = new HttpCookie("Cart");
+                string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(cookieValues);
+                cookie.Value = Security.Encrypt(jsonString.ToString());
+                cookie.Expires = DateTime.UtcNow.AddDays(cookieDays);
+                HttpContext.Current.Response.Cookies.Add(cookie);
+                return true;
+            }
+            return false;
+        }
         internal void ClearCookies()
         {
             if (HttpContext.Current.Request.Cookies[cookiename] != null)
             {
                 HttpContext.Current.Response.Cookies[cookiename].Expires = DateTime.UtcNow.AddDays(-1);
+            }
+        }
+
+        internal void ClearMArcetCooke()
+        {
+            if (HttpContext.Current.Request.Cookies["market"] != null)
+            {
+                HttpContext.Current.Response.Cookies["market"].Expires = DateTime.UtcNow.AddDays(-1);
             }
         }
 
@@ -53,6 +96,20 @@ namespace FirstSelection.Authorization
             if (cookieValues != null)
             {
                 HttpCookie cookie = new HttpCookie(cookiename);
+                string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(cookieValues);
+                cookie.Values.Add("k0", Security.Encrypt(jsonString.ToString()));
+                cookie.Expires = DateTime.UtcNow.AddDays(cookieDays);
+                HttpContext.Current.Response.Cookies.Add(cookie);
+                return true;
+            }
+            return false;
+        }
+        /// <returns></returns>
+        internal bool SaveToMarketCookies(UserInfo cookieValues)
+        {
+            if (cookieValues != null)
+            {
+                HttpCookie cookie = new HttpCookie("market");
                 string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(cookieValues);
                 cookie.Values.Add("k0", Security.Encrypt(jsonString.ToString()));
                 cookie.Expires = DateTime.UtcNow.AddDays(cookieDays);
@@ -137,5 +194,4 @@ namespace FirstSelection.Authorization
             public Guid Id { get; set; }
         }
     }
-
 }

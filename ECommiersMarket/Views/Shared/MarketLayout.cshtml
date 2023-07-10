@@ -44,7 +44,14 @@
             <a href="#" class="search-switch"><img src="/assetsMarket/img/icon/search.png" alt=""></a>
             <a href="#"><img src="/assetsMarket/img/icon/heart.png" alt=""></a>
             <a href="#"><img src="/assetsMarket/img/icon/cart.png" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
+            @if (ViewBag.CartCount == null)
+            {
+                <div class="price">$0.00</div>
+            }
+            else if (ViewBag.CartCount != null)
+            {
+        <div class="price"> ج.م@ViewBag.CartCount</div>
+            }
         </div>
         <div id="mobile-menu-wrap"></div>
      
@@ -100,7 +107,14 @@
                         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
                         <a href="#"><img src="/assetsMarket/img/icon/heart.png" alt=""></a>
                         <a href="#"><img src="/assetsMarket/img/icon/cart.png" alt=""> <span>0</span></a>
-                        <div class="price">$0.00</div>
+                        @if (ViewBag.CartCount == null)
+                        {
+                            <div class="price">$0.00</div>
+                        }
+                        else if (ViewBag.CartCount != null)
+                        {
+                    <div class="price"> ج.م @ViewBag.Sum  </div>
+                        }
                     </div>
                 </div>
             </div>

@@ -222,6 +222,8 @@
     <Content Include="assetsMarket\img\banner\banner-1.jpg" />
     <Content Include="assetsMarket\img\banner\banner-2.jpg" />
     <Content Include="assetsMarket\img\banner\banner-3.jpg" />
+    <Content Include="assetsMarket\img\banner\sdf.jpg" />
+    <Content Include="assetsMarket\img\banner\sdsa.jpg" />
     <Content Include="assetsMarket\img\blog\blog-1.jpg" />
     <Content Include="assetsMarket\img\blog\blog-2.jpg" />
     <Content Include="assetsMarket\img\blog\blog-3.jpg" />
@@ -242,6 +244,7 @@
     <Content Include="assetsMarket\img\clients\client-6.png" />
     <Content Include="assetsMarket\img\clients\client-7.png" />
     <Content Include="assetsMarket\img\clients\client-8.png" />
+    <Content Include="assetsMarket\img\hero\123.jpeg" />
     <Content Include="assetsMarket\img\logo.png" />
     <Content Include="assetsMarket\img\footer-logo.png" />
     <Content Include="assetsMarket\img\hero\hero-1.jpg" />

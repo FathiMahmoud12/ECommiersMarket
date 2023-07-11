@@ -358,7 +358,7 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ZahraMarketEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ZahraMarketEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Invoes" EntityType="Self.Invo" />
           <EntitySet Name="InvoDets" EntityType="Self.InvoDet" />
           <EntitySet Name="LoginInfoes" EntityType="Self.LoginInfo" />
@@ -391,7 +391,7 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ZahraMarketModelStoreContainer" CdmEntityContainer="ZahraMarketEntities1">
+        <EntityContainerMapping StorageEntityContainer="ZahraMarketModelStoreContainer" CdmEntityContainer="ZahraMarketEntities">
           <EntitySetMapping Name="Invoes">
             <EntityTypeMapping TypeName="ZahraMarketModel.Invo">
               <MappingFragment StoreEntitySet="Invo">

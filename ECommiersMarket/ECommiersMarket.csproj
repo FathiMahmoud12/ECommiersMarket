@@ -130,6 +130,7 @@
     <Compile Include="Authorization\VTSAuth.cs" />
     <Compile Include="Controllers\AddGroupsController.cs" />
     <Compile Include="Controllers\AddProductController.cs" />
+    <Compile Include="Controllers\AddStoreController.cs" />
     <Compile Include="Controllers\AddSupGroupController.cs" />
     <Compile Include="Controllers\AppProductPictureController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShopListController.cs" />
     <Compile Include="Controllers\shop_detailsController.cs" />
+    <Compile Include="Controllers\StoreListController.cs" />
     <Compile Include="Controllers\SubGroupsController.cs" />
     <Compile Include="Controllers\WelcomeFormController.cs" />
     <Compile Include="DTO\ProductShowingDTO.cs" />
@@ -240,6 +242,7 @@
     <Content Include="assetsMarket\img\clients\client-6.png" />
     <Content Include="assetsMarket\img\clients\client-7.png" />
     <Content Include="assetsMarket\img\clients\client-8.png" />
+    <Content Include="assetsMarket\img\logo.png" />
     <Content Include="assetsMarket\img\footer-logo.png" />
     <Content Include="assetsMarket\img\hero\hero-1.jpg" />
     <Content Include="assetsMarket\img\hero\hero-2.jpg" />
@@ -254,7 +257,6 @@
     <Content Include="assetsMarket\img\instagram\instagram-4.jpg" />
     <Content Include="assetsMarket\img\instagram\instagram-5.jpg" />
     <Content Include="assetsMarket\img\instagram\instagram-6.jpg" />
-    <Content Include="assetsMarket\img\logo.png" />
     <Content Include="assetsMarket\img\payment.png" />
     <Content Include="assetsMarket\img\product-sale.png" />
     <Content Include="assetsMarket\img\product\product-1.jpg" />
@@ -1974,6 +1976,8 @@
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\shop_details\Index.cshtml" />
     <Content Include="Views\ShopList\Index.cshtml" />
+    <Content Include="Views\AddStore\Index.cshtml" />
+    <Content Include="Views\StoreList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

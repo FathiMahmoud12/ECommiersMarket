@@ -4,27 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ZahraMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Invo">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvoDate" Type="date" />
-          <Property Name="InvoTotal" Type="int" />
-          <Property Name="UserID" Type="int" />
-        </EntityType>
-        <EntityType Name="InvoDet">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="invoID" Type="int" />
-          <Property Name="iteamID" Type="int" />
-          <Property Name="IteamName" Type="nvarchar" MaxLength="50" />
-          <Property Name="IeamQnt" Type="int" />
-          <Property Name="IteamPrice" Type="int" />
-        </EntityType>
+      <Schema Namespace="ZahraMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LoginInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,15 +46,12 @@
           <Property Name="Price" Type="float" />
           <Property Name="Notes" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Stors">
+        <EntityType Name="Store">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StoreName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Personalityto" Type="nvarchar" MaxLength="50" />
-          <Property Name="Person_Phone" Type="int" />
-          <Property Name="AddingDate" Type="date" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StorName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SubGroupsT">
           <Key>
@@ -109,18 +86,6 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <Association Name="FK_InvoDet_Invo">
-          <End Role="Invo" Type="Self.Invo" Multiplicity="0..1" />
-          <End Role="InvoDet" Type="Self.InvoDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Invo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="InvoDet">
-              <PropertyRef Name="invoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProductPictures_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="ProductPictures" Type="Self.ProductPictures" Multiplicity="*" />
@@ -158,13 +123,11 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ZahraMarketModelStoreContainer">
-          <EntitySet Name="Invo" EntityType="Self.Invo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InvoDet" EntityType="Self.InvoDet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginInfo" EntityType="Self.LoginInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainGroups" EntityType="Self.MainGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPictures" EntityType="Self.ProductPictures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Stors" EntityType="Self.Stors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubGroupsT" EntityType="Self.SubGroupsT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Reg_Info" EntityType="Self.User_Reg_Info" store:Type="Tables" store:Schema="dbo">
@@ -178,10 +141,6 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
     [User_Reg_Info].[RoleId] AS [RoleId]
     FROM [dbo].[User_Reg_Info] AS [User_Reg_Info]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_InvoDet_Invo" Association="Self.FK_InvoDet_Invo">
-            <End Role="Invo" EntitySet="Invo" />
-            <End Role="InvoDet" EntitySet="InvoDet" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProductPictures_Products" Association="Self.FK_ProductPictures_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductPictures" EntitySet="ProductPictures" />
@@ -200,28 +159,6 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ZahraMarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Invo">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvoDate" Type="DateTime" Precision="0" />
-          <Property Name="InvoTotal" Type="Int32" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="InvoDets" Relationship="Self.FK_InvoDet_Invo" FromRole="Invo" ToRole="InvoDet" />
-        </EntityType>
-        <EntityType Name="InvoDet">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="invoID" Type="Int32" />
-          <Property Name="iteamID" Type="Int32" />
-          <Property Name="IteamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IeamQnt" Type="Int32" />
-          <Property Name="IteamPrice" Type="Int32" />
-          <NavigationProperty Name="Invo" Relationship="Self.FK_InvoDet_Invo" FromRole="InvoDet" ToRole="Invo" />
-        </EntityType>
         <EntityType Name="LoginInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -267,15 +204,12 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
           <NavigationProperty Name="ProductPictures" Relationship="Self.FK_ProductPictures_Products" FromRole="Products" ToRole="ProductPictures" />
           <NavigationProperty Name="SubGroupsT" Relationship="Self.FK_Products_SubGroupsT" FromRole="Products" ToRole="SubGroupsT" />
         </EntityType>
-        <EntityType Name="Stor">
+        <EntityType Name="Store">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StoreName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Personalityto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Person_Phone" Type="Int32" />
-          <Property Name="AddingDate" Type="DateTime" Precision="0" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SubGroupsT">
           <Key>
@@ -310,18 +244,6 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
           <Property Name="userpassword" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK_InvoDet_Invo">
-          <End Role="Invo" Type="Self.Invo" Multiplicity="0..1" />
-          <End Role="InvoDet" Type="Self.InvoDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Invo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="InvoDet">
-              <PropertyRef Name="invoID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SubGroupsT_MainGroups">
           <End Role="MainGroups" Type="Self.MainGroup" Multiplicity="0..1" />
           <End Role="SubGroupsT" Type="Self.SubGroupsT" Multiplicity="*" />
@@ -359,20 +281,14 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ZahraMarketEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Invoes" EntityType="Self.Invo" />
-          <EntitySet Name="InvoDets" EntityType="Self.InvoDet" />
           <EntitySet Name="LoginInfoes" EntityType="Self.LoginInfo" />
           <EntitySet Name="MainGroups" EntityType="Self.MainGroup" />
           <EntitySet Name="ProductPictures" EntityType="Self.ProductPicture" />
           <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="Stors" EntityType="Self.Stor" />
+          <EntitySet Name="Stores" EntityType="Self.Store" />
           <EntitySet Name="SubGroupsTs" EntityType="Self.SubGroupsT" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="User_Reg_Info" EntityType="Self.User_Reg_Info" />
-          <AssociationSet Name="FK_InvoDet_Invo" Association="Self.FK_InvoDet_Invo">
-            <End Role="Invo" EntitySet="Invoes" />
-            <End Role="InvoDet" EntitySet="InvoDets" />
-          </AssociationSet>
           <AssociationSet Name="FK_SubGroupsT_MainGroups" Association="Self.FK_SubGroupsT_MainGroups">
             <End Role="MainGroups" EntitySet="MainGroups" />
             <End Role="SubGroupsT" EntitySet="SubGroupsTs" />
@@ -392,28 +308,6 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ZahraMarketModelStoreContainer" CdmEntityContainer="ZahraMarketEntities">
-          <EntitySetMapping Name="Invoes">
-            <EntityTypeMapping TypeName="ZahraMarketModel.Invo">
-              <MappingFragment StoreEntitySet="Invo">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="InvoDate" ColumnName="InvoDate" />
-                <ScalarProperty Name="InvoTotal" ColumnName="InvoTotal" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InvoDets">
-            <EntityTypeMapping TypeName="ZahraMarketModel.InvoDet">
-              <MappingFragment StoreEntitySet="InvoDet">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="invoID" ColumnName="invoID" />
-                <ScalarProperty Name="iteamID" ColumnName="iteamID" />
-                <ScalarProperty Name="IteamName" ColumnName="IteamName" />
-                <ScalarProperty Name="IeamQnt" ColumnName="IeamQnt" />
-                <ScalarProperty Name="IteamPrice" ColumnName="IteamPrice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="LoginInfoes">
             <EntityTypeMapping TypeName="ZahraMarketModel.LoginInfo">
               <MappingFragment StoreEntitySet="LoginInfo">
@@ -459,14 +353,11 @@ warning 6002: The table/view 'ZahraMarket.dbo.User_Reg_Info' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Stors">
-            <EntityTypeMapping TypeName="ZahraMarketModel.Stor">
-              <MappingFragment StoreEntitySet="Stors">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
-                <ScalarProperty Name="Personalityto" ColumnName="Personalityto" />
-                <ScalarProperty Name="Person_Phone" ColumnName="Person_Phone" />
-                <ScalarProperty Name="AddingDate" ColumnName="AddingDate" />
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="ZahraMarketModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StorName" ColumnName="StorName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

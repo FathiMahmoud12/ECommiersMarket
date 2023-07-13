@@ -4,18 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b42ed8aff9bd4a0db9c0cf9f92122553" Name="Diagram1">
-        <EntityTypeShape EntityType="ZahraMarketModel.Invo" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZahraMarketModel.InvoDet" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZahraMarketModel.LoginInfo" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="40bd86ab4cc94048a93c55c41c3f4148" Name="Diagram1">
+        <EntityTypeShape EntityType="ZahraMarketModel.LoginInfo" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ZahraMarketModel.MainGroup" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ZahraMarketModel.ProductPicture" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ZahraMarketModel.Product" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZahraMarketModel.Stor" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZahraMarketModel.Store" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ZahraMarketModel.SubGroupsT" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZahraMarketModel.User" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZahraMarketModel.User_Reg_Info" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="ZahraMarketModel.FK_InvoDet_Invo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ZahraMarketModel.User" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZahraMarketModel.User_Reg_Info" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="ZahraMarketModel.FK_SubGroupsT_MainGroups" ManuallyRouted="false" />
         <AssociationConnector Association="ZahraMarketModel.FK_ProductPictures_Products" ManuallyRouted="false" />
         <AssociationConnector Association="ZahraMarketModel.FK_Products_SubGroupsT" ManuallyRouted="false" />

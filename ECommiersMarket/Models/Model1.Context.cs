@@ -25,13 +25,11 @@ namespace ECommiersMarket.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Invo> Invoes { get; set; }
-        public virtual DbSet<InvoDet> InvoDets { get; set; }
         public virtual DbSet<LoginInfo> LoginInfoes { get; set; }
         public virtual DbSet<MainGroup> MainGroups { get; set; }
         public virtual DbSet<ProductPicture> ProductPictures { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Stor> Stors { get; set; }
+        public virtual DbSet<Store> Stores { get; set; }
         public virtual DbSet<SubGroupsT> SubGroupsTs { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<User_Reg_Info> User_Reg_Info { get; set; }

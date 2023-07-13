@@ -12,12 +12,9 @@ namespace ECommiersMarket.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Stor
+    public partial class Store
     {
-        public int ID { get; set; }
-        public string StoreName { get; set; }
-        public string Personalityto { get; set; }
-        public Nullable<int> Person_Phone { get; set; }
-        public Nullable<System.DateTime> AddingDate { get; set; }
+        public int Id { get; set; }
+        public string StorName { get; set; }
     }
 }

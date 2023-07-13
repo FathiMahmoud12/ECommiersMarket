@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<ECommiersMarket.Models.Store>
+
 @{
     ViewBag.Title = "إدارة المخازن";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,16 +10,16 @@
     <a color:black; class="btn btn-outline-success" href="~/SubGroups/Index">الرجوع للقائمة   </a>
 </p>
 
-@using (Html.BeginForm("ADD_gROUPS", "AddGroups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Index", "AddStore", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
 
     <div class="form-control ">
         <div class="col-12">
-          
+
             <br>
             <label for="pi_path" class="form-label">  اسم المخزن   </label>
-            <input type="text" class="form-control" id="pi_path" name="pi_path" placeholder="مخزن " required>
+            <input type="text" class="form-control" id="StorName" name="StorName" placeholder="مخزن " required>
             <div class="invalid-feedback">
 
             </div>

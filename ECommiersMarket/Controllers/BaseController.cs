@@ -30,10 +30,8 @@ namespace Elmorshedi_Candels.Controllers
                         filterContext.Controller.ViewBag.Cart = auth.LoadDataFromCookiesCart().ToList();
                         filterContext.Controller.ViewBag.CartCount = i;
                         filterContext.Controller.ViewBag.Sum = auth.LoadDataFromCookiesCart().Sum(x=>x.Price);
-
                     }
                 filterContext.Controller.ViewBag.SubGroups = db.SubGroupsTs.ToList();
-
 
 
 

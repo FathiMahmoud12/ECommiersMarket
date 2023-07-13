@@ -152,12 +152,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\GroupsController.cs" />
-    <Compile Include="Models\Invo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InvoDet.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LoginInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -185,7 +179,7 @@
     <Compile Include="Models\ProductPicture.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Stor.cs">
+    <Compile Include="Models\Store.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubGroupsT.cs">
@@ -219,6 +213,7 @@
     <Content Include="assetsMarket\img\about\team-4.jpg" />
     <Content Include="assetsMarket\img\about\testimonial-author.jpg" />
     <Content Include="assetsMarket\img\about\testimonial-pic.jpg" />
+    <Content Include="assetsMarket\img\banner\5ba36d98-0a31-473c-b5a9-2f407dbf1d03.jpg" />
     <Content Include="assetsMarket\img\banner\banner-1.jpg" />
     <Content Include="assetsMarket\img\banner\banner-2.jpg" />
     <Content Include="assetsMarket\img\banner\banner-3.jpg" />
@@ -262,6 +257,14 @@
     <Content Include="assetsMarket\img\instagram\instagram-6.jpg" />
     <Content Include="assetsMarket\img\payment.png" />
     <Content Include="assetsMarket\img\product-sale.png" />
+    <Content Include="assetsMarket\img\product\1.png" />
+    <Content Include="assetsMarket\img\product\2.png" />
+    <Content Include="assetsMarket\img\product\3.png" />
+    <Content Include="assetsMarket\img\product\4.png" />
+    <Content Include="assetsMarket\img\product\5.png" />
+    <Content Include="assetsMarket\img\product\6.png" />
+    <Content Include="assetsMarket\img\product\7.png" />
+    <Content Include="assetsMarket\img\product\8.png" />
     <Content Include="assetsMarket\img\product\product-1.jpg" />
     <Content Include="assetsMarket\img\product\product-10.jpg" />
     <Content Include="assetsMarket\img\product\product-11.jpg" />

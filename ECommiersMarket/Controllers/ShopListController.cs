@@ -1,4 +1,5 @@
-﻿using Elmorshedi_Candels.Controllers;
+﻿using ECommiersMarket.Models;
+using Elmorshedi_Candels.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace ECommiersMarket.Controllers
 {
     public class ShopListController : BaseController
     {
+        ZahraMarketEntities db = new ZahraMarketEntities();
+
         // GET: ShopList
         public ActionResult Index()
         {

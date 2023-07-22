@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "إضافة أعلان جديد ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>إضافة أعلان جديد </h2>
+
+
+<p style="direction:ltr ">
+    <a color:black; class="btn btn-outline-success" href="~/SubGroups/Index">الرجوع للقائمة   </a>
+</p>
+
+@using (Html.BeginForm("saveAdv", "AddAdv", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    <div class="form-control ">
+        <div class="col-12">
+            <label for="GroupName" class="form-label">إسم الاعلان  :  </label>
+            <input type="text" class="form-control" id="AdName" name="GroupName" placeholder="المجموعة " required>
+            <div class="invalid-feedback">
+            </div>
+            <br>  
+            <label for="GroupName" class="form-label">عنوان الفقرة   :  </label>
+            <input type="text" class="form-control" id="PTitle" name="GroupName" placeholder="عنوان الفقرة  " required>
+            <div class="invalid-feedback">
+            </div>
+            <br>  <label for="GroupName" class="form-label">النص الاول  :  </label>
+            <input type="text" class="form-control" id="FPra" name="GroupName" placeholder="النص الاول " required>
+            <div class="invalid-feedback">
+            </div>
+            <br>  
+            <label for="GroupName" class="form-label">النص الثاني   :  </label>
+            <input type="text" class="form-control" id="SecPra" name="GroupName" placeholder="النص الثاني " required>
+            <div class="invalid-feedback">
+            </div>
+            <br>
+            <label for="pi_path" class="form-label">  صورة الاعلان   </label>
+            <input type="file" class="form-control" id="pi_path" name="pi_path" placeholder="صورة " required>
+            <div class="invalid-feedback">
+
+            </div>
+            <br>
+            <div class="mb-3">
+                <button class="btn btn-primary w-100 waves-effect waves-light" type="submit"> حفظ  </button>
+            </div>
+        </div>
+    </div>
+}
+

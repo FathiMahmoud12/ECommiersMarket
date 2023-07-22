@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ECommiersMarket.Models.MainGroup>
+
+@{
+    ViewBag.Title = "الاعلانات ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="card-body">
+    <p style="direction:ltr ">
+        <a color:black; class="btn btn-outline-success" href="~/AddGroups/Index">إضافة إعلان  </a>
+    </p>
+    <h2>الاعلانات </h2>
+
+
+    <table class="table table-bordered table-responsive table-hover " id="datatable" name="datatable">
+        <thead>
+            <tr>
+                <th>م </th>
+                <th>اسم الاعلان  </th>
+                <th>عنوان الفقرة    </th>
+                <th>النص الاول </th>
+                <th>النص الثاني  </th>
+                <th>الصورة </th>
+                <th>العمليات  </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GroupName)
+                    </td>
+                    <td>
+                        <img src="@item.pi_path" style="width:50px" alt="لا يمكن عرض الصورة " />
+
+                    </td>
+
+
+
+                    <td class="col-3">
+                        <a href="/Groups/Edit/@item.Id" class="btn btn-outline-secondary btn-sm edit" title="تعديل ">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </a>
+
+                        <a href="/Groups/Delete/@item.Id" onclick="return deleteCheck(this);" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash fa-shake"></i></a>
+
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section scripts
+
+{
+
+}

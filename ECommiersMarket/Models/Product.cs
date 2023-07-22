@@ -26,6 +26,9 @@ namespace ECommiersMarket.Models
         public Nullable<int> Qnt { get; set; }
         public Nullable<double> Price { get; set; }
         public string Notes { get; set; }
+        public string Size { get; set; }
+        public string weight { get; set; }
+        public string AvalColor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPicture> ProductPictures { get; set; }

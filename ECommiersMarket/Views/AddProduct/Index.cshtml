@@ -16,80 +16,93 @@
             <a color:black; class="btn btn-outline-success" href="~/AppProductPicture/Index"> إضافة صورة لمنتج  </a>
         </p>
     </div>
-    </div>
-    <h2>إدارة الفئات </h2>
+</div>
+<h2>إدارة الفئات </h2>
 
-    @using (Html.BeginForm("SaveData", "AddProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div class="form-control ">
-            <div class="col-12">
+@using (Html.BeginForm("SaveData", "AddProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-control ">
+        <div class="col-12">
 
-                <div class="form-group mb-3 col-sm-6 col-lg-12">
-                    @Html.Label("الفئات ", htmlAttributes: new { @class = "control-label" })
-                    <div class="col-12">
-                        @Html.DropDownList("GroupID", new SelectList(ViewBag.data, "ID", "GroupName"), "--اختر--", new { @class = "form-control text-center searchable", required = "required" })
-                        @Html.ValidationMessage("GroupID", "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-
-                <div class="form-group mb-3 col-sm-6 col-lg-12">
-                    @Html.Label("الفئات الفرعية", htmlAttributes: new { @class = "control-label" })
-                    <div class="col-12">
-                        @Html.DropDownList("SupGroup", null, "--اختر--", new { @class = "form-control text-center ", required = "required" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-6">
-                    <label for="ProductName" class="form-label">إسم الصنف   :  </label>
-                    <input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="المجموعة " required>
-                </div>
-                <div class="col-6">
-                    <label for="Price" class="form-label">سعر البيع  :  </label>
-                    <input type="number" class="form-control" id="Price" name="Price" placeholder="السعر " required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <label for="Qnt" class="form-label">الكمية :  </label>
-                    <input type="number" class="form-control" id="Qnt" name="Qnt" placeholder="الكمية " required>
-                </div>
-             
-            </div>
-
-            <br />
-            <div class="row">
+            <div class="form-group mb-3 col-sm-6 col-lg-12">
+                @Html.Label("الفئات ", htmlAttributes: new { @class = "control-label" })
                 <div class="col-12">
-                    <label for="Notes" class="form-label">الملاحظات  :  </label>
-                    <textarea class="form-control" id="Notes" name="Notes" placeholder="الملاحظات " required>
-</textarea>
+                    @Html.DropDownList("GroupID", new SelectList(ViewBag.data, "ID", "GroupName"), "--اختر--", new { @class = "form-control text-center searchable", required = "required" })
+                    @Html.ValidationMessage("GroupID", "", new { @class = "text-danger" })
                 </div>
-            </div>
-            <br />
-            <div class="mb-3">
-                <button class="btn btn-outline-success w-100 waves-effect waves-light" type="submit"> حفظ  </button>
             </div>
         </div>
-    }
+        <div class="col-12">
 
-    @section scripts
+            <div class="form-group mb-3 col-sm-6 col-lg-12">
+                @Html.Label("الفئات الفرعية", htmlAttributes: new { @class = "control-label" })
+                <div class="col-12">
+                    @Html.DropDownList("SupGroup", null, "--اختر--", new { @class = "form-control text-center ", required = "required" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <label for="ProductName" class="form-label">إسم الصنف   :  </label>
+                <input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="المجموعة " required>
+            </div>
+            <div class="col-6">
+                <label for="Price" class="form-label">سعر البيع  :  </label>
+                <input type="number" class="form-control" id="Price" name="Price" placeholder="السعر " required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="Qnt" class="form-label">الكمية :  </label>
+                <input type="number" class="form-control" id="Qnt" name="Qnt" placeholder="الكمية " required>
+            </div>  <div class="col-6">
+                <label for="Qnt" class="form-label">المقاس  :  </label>
+                <input type="text" class="form-control" id="Size" name="Size" placeholder="المقاس " required>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="weight" class="form-label">الوزن :  </label>
+                <input type="text" class="form-control" id="weight" name="weight" placeholder="الوزن " required>
+            </div>  <div class="col-6">
+                <label for="AvalColor" class="form-label">الالوان المتاحة :  </label>
+                <input type="text" class="form-control" id="AvalColor" name="AvalColor" placeholder="الالوان المتاحة " required>
+            </div>
+
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-12">
+                <label for="Notes" class="form-label">الملاحظات  :  </label>
+                <textarea class="form-control" id="Notes" name="Notes" placeholder="الملاحظات " required>
+</textarea>
+            </div>
+        </div>
+        <br />
+        <div class="mb-3">
+            <button class="btn btn-outline-success w-100 waves-effect waves-light" type="submit"> حفظ  </button>
+        </div>
+    </div>
+}
+
+@section scripts
 
 {
-        <script>
-            $("#GroupID").change(function () {
-                
-                $.get('/AddProduct/getCats', { GroupID: $("#GroupID").val() }, function (data) {
-                    $("#SupGroup").empty();
-                    $("#SupGroup").append("<option value=''>--اختر--</option>")
-                    $.each(data, function (key, value) {
-                        $("#SupGroup").append("<option value=" + value["Id"] + ">" + value["SubGroupName"] + "</option>")
-                    });
+    <script>
+        $("#GroupID").change(function () {
+
+            $.get('/AddProduct/getCats', { GroupID: $("#GroupID").val() }, function (data) {
+                $("#SupGroup").empty();
+                $("#SupGroup").append("<option value=''>--اختر--</option>")
+                $.each(data, function (key, value) {
+                    $("#SupGroup").append("<option value=" + value["Id"] + ">" + value["SubGroupName"] + "</option>")
                 });
             });
+        });
 
 
-        </script>
-    }
+    </script>
+}

@@ -14,7 +14,7 @@ namespace ECommiersMarket.Controllers
 
         public ActionResult Index()       
         {
-            return View(db.Stores.ToList());
+            return View();
         }
     }
 }

@@ -152,6 +152,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\GroupsController.cs" />
+    <Compile Include="Models\ADV.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Invo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InvoDet.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoginInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -179,7 +188,7 @@
     <Compile Include="Models\ProductPicture.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Store.cs">
+    <Compile Include="Models\Stor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubGroupsT.cs">
@@ -240,6 +249,7 @@
     <Content Include="assetsMarket\img\clients\client-7.png" />
     <Content Include="assetsMarket\img\clients\client-8.png" />
     <Content Include="assetsMarket\img\hero\123.jpeg" />
+    <Content Include="assetsMarket\img\images.png" />
     <Content Include="assetsMarket\img\logo.png" />
     <Content Include="assetsMarket\img\footer-logo.png" />
     <Content Include="assetsMarket\img\hero\hero-1.jpg" />

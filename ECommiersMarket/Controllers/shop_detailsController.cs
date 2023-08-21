@@ -20,6 +20,7 @@ namespace ECommiersMarket.Controllers
                 ProdName = x.ProductName,
                 Price = (int)x.Price,
                 Note = x.Notes,
+                SupGroupId = x.SubGroupsT.Id,
                 ProductImages = x.ProductPictures.Select(y => new ProductsImagesDto
                 {
                     Img = y.pi_path
@@ -28,6 +29,9 @@ namespace ECommiersMarket.Controllers
 
             }).ToList();
             ViewBag.Iteams = Pro;
+
+
+
             return View("Index",db.Products.ToList());
         }
     }
